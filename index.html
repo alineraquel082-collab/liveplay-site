@@ -1,59 +1,107 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LivePlay</title><style>*{box-sizing:border-box}body{margin:0;background:#08051a;color:#fff;font-family:Arial}header{padding:12px;background:#0f0b2e;text-align:center;font-weight:900;border-bottom:2px solid #5b21b6}.timer{position:fixed;top:10px;right:10px;background:#facc15;color:#000;padding:7px 14px;border-radius:20px;font-weight:900;z-index:999;font-size:12px}main{max-width:700px;margin:auto;padding:12px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.jogo{background:#151039;border:2px solid #5b21b6;border-radius:16px;padding:18px;text-align:center;cursor:pointer;font-weight:700}.aviso{background:#1a144f;border:2px dashed #facc15;border-radius:14px;padding:12px;margin:12px 0}.aviso h3{margin:0 0 8px;color:#facc15;font-size:14px}.aviso ol{margin:0;padding-left:18px;font-size:13px;line-height:1.5}.aviso li{margin:4px 0}.tag{background:#22c55e;color:#000;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:900}.plano{background:#151039;border:2px solid #333;border-radius:16px;padding:12px;margin:10px 0;text-align:center}.premium{border-color:#facc15}.btn{width:100%;padding:14px;border:0;border-radius:10px;font-weight:900;cursor:pointer;margin-top:6px}.btn-plus{background:#22c55e}.btn-prem{background:#facc15;color:#000}.tela{display:none}.tela.ativa{display:block}.card{background:#fff;color:#000;border-radius:18px;max-width:420px;width:100%;padding:20px;text-align:center;margin:20px auto}.qr{background:#f5f5f5;padding:10px;border-radius:12px}.pixcode{font-size:9px;word-break:break-all;background:#eee;padding:8px;border-radius:6px;text-align:left;margin:8px 0}.bloqueio{position:fixed;inset:0;background:rgba(0,0,0,.97);display:none;align-items:center;justify-content:center;z-index:1000;padding:15px}.bloqueio.show{display:flex}#gameArea{position:fixed;inset:0;background:#000;display:none;flex-direction:column;z-index:800}#gameArea.show{display:flex}#gHeader{padding:10px;background:#151039;display:flex;justify-content:space-between}#canvasWrap{flex:1;display:flex;align-items:center;justify-content:center}canvas{background:#000;border-radius:12px;max-width:98vw}</style></head><body><header>🎮 LivePlay - Jogos pra Live Sem Rosto</header><div class="timer" id="timer">⏱️ Grátis: 10:00</div>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LivePlay - Jogos Reais Live Sem Rosto</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:#08051a;color:#fff;font-family:Arial}
+header{padding:14px;background:#0f0b2e;text-align:center;font-weight:900;border-bottom:2px solid #5b21b6}
+.timer{position:fixed;top:8px;right:8px;background:#facc15;color:#000;padding:8px 14px;border-radius:20px;font-weight:900;z-index:9999;font-size:12px}
+main{max-width:700px;margin:auto;padding:12px}
+.box{border:2px dashed #facc15;border-radius:14px;padding:12px;margin:12px 0;background:#1a144f}
+.box h3{margin:0 0 8px;color:#facc15;font-size:13px}
+.box ol{margin:0;padding-left:18px;font-size:12px;line-height:1.6}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.jogo{background:#151039;border:2px solid #5b21b6;border-radius:16px;padding:22px 10px;text-align:center;font-weight:800;cursor:pointer;min-height:95px}
+.jogo:active{transform:scale(.96);border-color:#facc15}
+.plano{border:2px solid #333;border-radius:16px;padding:14px;margin:12px 0;text-align:center;background:#151039}
+.plus{border-color:#22c55e}.premium{border-color:#facc15;background:#1d1650}
+.btn{width:100%;padding:16px;border:0;border-radius:12px;font-weight:900;margin-top:8px;font-size:15px}
+.btn:disabled{background:#555!important;color:#999!important}
+.btn-plus{background:#22c55e;color:#000}.btn-prem{background:#facc15;color:#000}
+.tela{display:none}.tela.ativa{display:block}
+.card{background:#fff;color:#000;border-radius:18px;max-width:430px;width:100%;padding:20px;text-align:center;margin:20px auto}
+.pixcode{font-size:9px;word-break:break-all;background:#eee;padding:8px;border-radius:6px;text-align:left;margin:10px 0}
+.bloqueio{position:fixed;inset:0;background:#000;display:none;align-items:center;justify-content:center;z-index:6000;padding:15px}.bloqueio.show{display:flex}
+#gameArea{position:fixed;inset:0;background:#000;display:none;flex-direction:column;z-index:5000}#gameArea.show{display:flex}
+#gHeader{padding:10px;background:#151039;display:flex;justify-content:space-between}
+#wrap{flex:1;display:flex;align-items:center;justify-content:center}
+canvas{background:#0a0a0a;border-radius:12px;max-width:98vw;touch-action:none}
+.wait{background:#fff3cd;color:#664d03;padding:12px;border-radius:10px;margin:12px 0;font-weight:800;font-size:13px;border:2px solid #facc15}
+.wait.ok{background:#d1fae5;color:#065f46;border-color:#22c55e}
+</style>
+</head>
+<body>
+<header>🎮 LivePlay - Jogos Reais Pra Live Sem Rosto</header>
+<div class="timer" id="timer">⏱️ Grátis: 10:00</div>
 
 <div id="tela-venda" class="tela ativa"><main>
-
-<!-- AVISO COMO TRANSMITIR -->
-<div class="aviso"><h3>🔴 COMO TRANSMITIR NA LIVE DO TIKTOK <span class="tag">NOVO</span></h3>
+<div class="box"><h3>🔴 COMO USAR E TRANSMITIR NO TIKTOK - LEIA AQUI</h3>
 <ol>
-<li><b>No PC:</b> Abra o <b>TikTok Live Studio</b></li>
-<li>Clique em <b>Adicionar Fonte > Captura de Janela</b></li>
-<li>Selecione o Chrome com este site aberto</li>
-<li>Clique no jogo que quer (ex: TikTok Race)</li>
-<li>Clique no botão <b>⛶ MODO LIVE</b> pra ficar tela cheia sem botões</li>
-<li>Pronto! Seu público já vê o jogo na live!</li>
-</ol>
-<p style="font-size:11px;margin:6px 0 0;color:#a78bfa">💡 Dica: Deixe o placar grande. É assim que as lives sem rosto ganham presente, o povo torce!</p>
-</div>
+<li>Teste os jogos abaixo por <b>10 minutos grátis</b></li>
+<li>Quando acabar, escolha PLUS R$9,90 ou PREMIUM R$19,90</li>
+<li>Pague no PIX QR Code (92981661567 - Aliner Raquel)</li>
+<li>Aguarde <b>5 minutos</b> na tela do QR Code (anti-golpe)</li>
+<li>Clique em JÁ PAGUEI - libera vitalício</li>
+<li>Para transmitir: <b>PC > TikTok Live Studio > Adicionar Fonte > Captura de Janela > Selecione este site > Clique no jogo > MODO LIVE</b></li>
+</ol></div>
 
-<div class="aviso" style="border-color:#22c55e"><h3 style="color:#22c55e">📱 COMO USAR NO CELULAR</h3>
-<ol>
-<li>Abra este site no celular</li>
-<li>Clique no jogo > jogue normal</li>
-<li>Pra transmitir: use 2 celulares, um jogando e outro fazendo live com câmera apontada pra tela</li>
-<li>Ou espelhe a tela no PC com ApowerMirror</li>
-</ol>
-</div>
-
-<h3>🕹️ Teste 10 min grátis - Clique e JOGUE DE VERDADE</h3>
+<h3 style="text-align:center">🕹️ CLIQUE E JOGUE DE VERDADE:</h3>
 <div class="grid">
-<div class="jogo" onclick="openGame('bolinha')">⚽<br>Bolinha</div>
-<div class="jogo" onclick="openGame('clicker')">🍪<br>Clicker</div>
-<div class="jogo" onclick="openGame('cores')">🎨<br>Cores</div>
-<div class="jogo" onclick="openGame('pac')">👾<br>Pac-Man</div>
-<div class="jogo" onclick="openGame('race')">🏃<br>TikTok Race</div>
-<div class="jogo" onclick="openGame('roleta')">🎡<br>Roleta</div>
+<div class="jogo" onclick="openGame('futebol')">⚽<br>Bolinha<br><small>Chute a Gol</small></div>
+<div class="jogo" onclick="openGame('comida')">🍔<br>Clicker<br><small>Comidinhas</small></div>
+<div class="jogo" onclick="openGame('pintar')">🎨<br>Cores<br><small>Pintar</small></div>
+<div class="jogo" onclick="openGame('pac')">👾<br>Pac-Man<br><small>Frutinhas</small></div>
+<div class="jogo" onclick="openGame('race')">🏃<br>TikTok Race<br><small>Corrida</small></div>
+<div class="jogo" onclick="openGame('roleta')">🎡<br>Roleta<br><small>Quem Ganhou?</small></div>
 </div>
 
-<div class="plano plus"><b>PLUS R$ 9,90</b><br><button class="btn btn-plus" onclick="irPagar('PLUS','9.90')">ASSINAR PLUS</button></div>
-<div class="plano premium"><b>PREMIUM R$ 19,90</b><br><button class="btn btn-prem" onclick="irPagar('PREMIUM','19.90')">ASSINAR PREMIUM</button></div>
+<div class="plano plus"><b>PLUS R$ 9,90 - 4 Jogos</b><br><button class="btn btn-plus" onclick="irPagar('PLUS','9.90')">ASSINAR PLUS R$9,90</button></div>
+<div class="plano premium"><b>PREMIUM R$ 19,90 - 6 Jogos Vitalício</b><br><button class="btn btn-prem" onclick="irPagar('PREMIUM','19.90')">ASSINAR PREMIUM R$19,90</button></div>
 </main></div>
 
-<div id="tela-pagar" class="tela"><div class="card"><h2 id="tit">PIX</h2><p>Valor <b id="val" style="font-size:24px;color:#6d28d9"></b></p><div class="qr"><img id="qrimg" width="260"></div><div class="pixcode" id="code"></div><button class="btn btn-plus" onclick="navigator.clipboard.writeText(document.getElementById('code').innerText);alert('PIX COPIADO')">📋 COPIAR PIX</button><div id="waitMsg" style="background:#fff3cd;padding:10px;border-radius:8px;margin:10px 0;color:#664d03;font-size:12px;font-weight:700">⏳ Aguarde <span id="waitTimer">5:00</span> pra confirmar</div><button id="btnLiberar" class="btn" style="background:#6d28d9;color:#fff" disabled onclick="liberar()">⏳ AGUARDE 5 MIN</button><button class="btn" style="background:#ccc" onclick="mostrar('tela-venda')">⬅️ VOLTAR</button><p style="font-size:10px;color:#888">PIX 92981661567 - ALINER RAQUEL</p></div></div>
+<div id="tela-pagar" class="tela"><div class="card">
+<h2 id="tit">PIX</h2><p>Valor <b id="val" style="font-size:28px;color:#6d28d9"></b></p>
+<img id="qrimg" width="300" style="border-radius:12px;border:1px solid #ddd">
+<div class="pixcode" id="code"></div>
+<button class="btn btn-plus" onclick="navigator.clipboard.writeText(document.getElementById('code').innerText);alert('PIX COPIADO!')">📋 COPIAR PIX</button>
+<div id="waitBox" class="wait">⏳ SEGURANÇA: Aguarde <span id="waitTimer" style="font-size:22px">5:00</span> para confirmar<br>PIX 92981661567 - Aliner Raquel<br><span style="font-size:10px">O botão libera sozinho após 5 minutos - evita golpes</span></div>
+<button id="btnLiberar" class="btn" disabled onclick="liberar()">🔒 AGUARDE 5:00 - JÁ PAGUEI</button>
+<button class="btn" style="background:#ccc" onclick="mostrar('tela-venda')">⬅️ VOLTAR</button>
+</div></div>
 
 <div id="tela-premium" class="tela"><header style="background:#22c55e;color:#000">✅ <span id="planoTxt"></span> LIBERADO VITALÍCIO</header><main>
-<div class="aviso"><h3>🔴 MODO LIVE ATIVO - Como transmitir agora:</h3><ol><li>Clique no jogo abaixo</li><li>Clique em <b>⛶ MODO LIVE</b> no topo</li><li>No TikTok Live Studio adicione essa janela</li><li>Seus seguidores já veem o jogo!</li></ol></div>
-<div class="grid"><div class="jogo" onclick="openGame('bolinha')">⚽ Bolinha</div><div class="jogo" onclick="openGame('clicker')">🍪 Clicker</div><div class="jogo" onclick="openGame('cores')">🎨 Cores</div><div class="jogo" onclick="openGame('pac')">👾 Pac-Man</div><div class="jogo" onclick="openGame('race')">🏃 Race</div><div class="jogo" onclick="openGame('roleta')">🎡 Roleta</div></div></main></div>
+<div class="box" style="border-color:#22c55e"><h3 style="color:#22c55e">✅ LIBERADO! COMO TRANSMITIR:</h3><ol><li>Clique no jogo abaixo</li><li>No topo clique em ⛶ MODO LIVE</li><li>TikTok Live Studio > Captura de Janela > Este site</li></ol></div>
+<div class="grid"><div class="jogo" onclick="openGame('futebol')">⚽ Bolinha</div><div class="jogo" onclick="openGame('comida')">🍔 Clicker</div><div class="jogo" onclick="openGame('pintar')">🎨 Cores</div><div class="jogo" onclick="openGame('pac')">👾 Pac-Man</div><div class="jogo" onclick="openGame('race')">🏃 Race</div><div class="jogo" onclick="openGame('roleta')">🎡 Roleta</div></div>
+</main></div>
 
-<div id="bloq" class="bloqueio"><div class="card"><h2>⏱️ Tempo grátis acabou!</h2><button class="btn btn-prem" onclick="irPagar('PREMIUM','19.90')">PREMIUM R$ 19,90</button></div></div>
+<div id="bloq" class="bloqueio"><div class="card"><h2>⏱️ Seus 10 min grátis acabaram!</h2><button class="btn btn-plus" onclick="irPagar('PLUS','9.90')">PLUS R$9,90</button><button class="btn btn-prem" onclick="irPagar('PREMIUM','19.90')">PREMIUM R$19,90</button></div></div>
 
-<div id="gameArea"><div id="gHeader"><b id="gTitle">Jogo</b><b id="gScore">0</b><div><button onclick="toggleFull()" style="background:#facc15;color:#000;border:0;border-radius:6px;padding:6px 10px;font-weight:900;margin-right:6px">⛶ MODO LIVE</button><button onclick="closeGame()" style="background:#333;color:#fff;border:0;border-radius:6px;padding:6px 12px">✕ Fechar</button></div></div><div id="canvasWrap"><canvas id="c" width="360" height="520"></canvas><div id="extra" style="display:none"></div></div><div style="padding:8px;background:#1a144f;text-align:center;font-size:11px">🔴 Dica Live: Clique em MODO LIVE pra esconder botões e transmitir limpo no TikTok</div></div>
+<div id="gameArea"><div id="gHeader"><b id="gTitle">Jogo</b><b id="gScore">0</b><div><button onclick="toggleFull()" style="background:#facc15;color:#000;border:0;border-radius:6px;padding:7px 10px;font-weight:900;margin-right:6px">⛶ MODO LIVE</button><button onclick="fechar()" style="background:#333;color:#fff;border:0;border-radius:8px;padding:7px 12px">✕ Fechar</button></div></div><div id="wrap"><canvas id="c" width="360" height="560"></canvas></div></div>
 
 <script>
-let canvas=document.getElementById('c'),ctx=canvas.getContext('2d'),game=null,score=0,tempo=600,pago=localStorage.getItem('pago'),planoAtual='PREMIUM',valorAtual='19.90',waitTempo=300,waitIv=null;
+let canvas=document.getElementById('c'),ctx=canvas.getContext('2d'),loop=null,tempo=600,pago=localStorage.getItem('pago'),planoAtual='PREMIUM',waitTempo=300,waitIv=null;
 function mostrar(id){document.querySelectorAll('.tela').forEach(t=>t.classList.remove('ativa'));document.getElementById(id).classList.add('ativa')}
-function irPagar(p,v){planoAtual=p;valorAtual=v;document.getElementById('tit').innerText='Pagar '+p;document.getElementById('val').innerText='R$ '+v;gerarPIX(v);mostrar('tela-pagar');document.getElementById('bloq').classList.remove('show');waitTempo=300;let btn=document.getElementById('btnLiberar');btn.disabled=true;if(waitIv)clearInterval(waitIv);waitIv=setInterval(()=>{waitTempo--;let m=Math.floor(waitTempo/60),s=waitTempo%60;document.getElementById('waitTimer').innerText=m+':'+(s<10?'0':'')+s;btn.innerText='⏳ AGUARDE '+m+':'+(s<10?'0':'')+s;if(waitTempo<=0){clearInterval(waitIv);btn.disabled=false;btn.innerText='✅ JÁ PAGUEI, LIBERAR AGORA';btn.style.background='#22c55e';btn.style.color='#000'}},1000)}
-function liberar(){localStorage.setItem('pago',planoAtual);pago=planoAtual;document.getElementById('planoTxt').innerText=planoAtual;document.getElementById('timer').innerText='✅ '+planoAtual+' LIBERADO';document.getElementById('timer').style.background='#22c55e';mostrar('tela-premium');clearInterval(iv)}
-function openGame(t){if(!pago && tempo<=0){document.getElementById('bloq').classList.add('show');return}document.getElementById('gameArea').classList.add('show');score=0;document.getElementById('gScore').innerText=0;document.getElementById('extra').style.display='none';canvas.style.display='none';if(t=='bolinha')bolinha();else if(t=='clicker')clicker();else if(t=='cores')cores();else if(t=='pac')pac();else if(t=='race')race();else if(t=='roleta')roleta();}
-function closeGame(){document.getElementById('gameArea').classList.remove('show');if(game)cancelAnimationFrame(game);if(document.fullscreenElement)document.exitFullscreen()}
+function irPagar(p,v){planoAtual=p;document.getElementById('tit').innerText='Pagar '+p;document.getElementById('val').innerText='R$ '+v;gerarPIX(v);mostrar('tela-pagar');document.getElementById('bloq').classList.remove('show');waitTempo=300;let btn=document.getElementById('btnLiberar');btn.disabled=true;btn.style.background='#888';let box=document.getElementById('waitBox');box.classList.remove('ok');clearInterval(waitIv);waitIv=setInterval(()=>{waitTempo--;let m=Math.floor(waitTempo/60),s=waitTempo%60;let txt=m+':'+String(s).padStart(2,'0');document.getElementById('waitTimer').innerText=txt;btn.innerText='🔒 AGUARDE '+txt+' - JÁ PAGUEI';if(waitTempo<=0){clearInterval(waitIv);btn.disabled=false;btn.innerText='✅ JÁ PAGUEI, LIBERAR AGORA';btn.style.background='#22c55e';btn.style.color='#000';box.innerHTML='✅ LIBERADO! Pode clicar em JÁ PAGUEI<br>PIX confirmado após 5 min de segurança';box.classList.add('ok');}},1000);}
+function liberar(){if(waitTempo>0){alert('Aguarde '+Math.ceil(waitTempo/60)+' min - proteção anti-golpe no seu PIX');return}localStorage.setItem('pago',planoAtual);pago=planoAtual;document.getElementById('planoTxt').innerText=planoAtual;document.getElementById('timer').innerText='✅ '+planoAtual+' LIBERADO';document.getElementById('timer').style.background='#22c55e';mostrar('tela-premium');clearInterval(iv);clearInterval(waitIv)}
+function openGame(t){if(!pago && tempo<=0){document.getElementById('bloq').classList.add('show');return}document.getElementById('gameArea').classList.add('show');document.getElementById('gScore').innerText='0';if(loop)cancelAnimationFrame(loop);canvas.onclick=null;canvas.ontouchstart=null;canvas.onmousemove=null;canvas.ontouchmove=null;canvas.onmousedown=null;canvas.onmouseup=null;if(t=='futebol')futebol();else if(t=='comida')comida();else if(t=='pintar')pintar();else if(t=='pac')pac();else if(t=='race')race();else if(t=='roleta')roleta()}
+function fechar(){document.getElementById('gameArea').classList.remove('show');if(loop)cancelAnimationFrame(loop);if(document.fullscreenElement)document.exitFullscreen()}
 function toggleFull(){let el=document.getElementById('gameArea');if(!document.fullscreenElement)el.requestFullscreen();else document.exitFullscreen()}
-function bolinha(){canvas.style.display='block';document.getElementById('gTitle').innerText='⚽ Bolinha';let y=100,vy=0;function loop(){ctx.clearRect(0,0,360,520);vy+=0.5;y+=vy;if(y>500){vy=-11;score++;document.getElementById('gScore').innerText=score}
+function setScore(v){document.getElementById('gScore').innerText=v}
+
+function futebol(){document.getElementById('gTitle').innerText='⚽ Chute a Gol';let bx=180,by=460,bvy=0,gx=180,dir=1,gol=false,sc=0;function draw(){ctx.clearRect(0,0,360,560);ctx.fillStyle='#1e7a1e';ctx.fillRect(0,0,360,560);ctx.strokeStyle='#fff';ctx.lineWidth=3;ctx.strokeRect(60,20,240,80);ctx.fillStyle='#ffcc00';ctx.fillRect(gx-16,55,32,32);ctx.beginPath();ctx.arc(bx,by,12,0,Math.PI*2);ctx.fillStyle='#fff';ctx.fill();ctx.strokeStyle='#000';ctx.stroke();if(gol){by+=bvy;bvy-=0.5;if(by<110){if(bx>65&&bx<295&&Math.abs(bx-gx)>22){sc++;setScore(sc);ctx.fillStyle='#fff';ctx.font='bold 30px Arial';ctx.textAlign='center';ctx.fillText('GOOOL! ⚽',180,280)}else{ctx.fillStyle='#ff4444';ctx.font='bold 24px Arial';ctx.textAlign='center';ctx.fillText('DEFENDEU! 🧤',180,280)}setTimeout(()=>{bx=180;by=460;bvy=0;gol=false},800)}}gx+=dir*2.2;if(gx<75||gx>285)dir*=-1;loop=requestAnimationFrame(draw)}draw();let chute=()=>{if(!gol){gol=true;bvy=-13;let alvo=70+Math.random()*220;let dx=(alvo-bx)/18;let inter=setInterval(()=>{bx+=dx;if(Math.abs(bx-alvo)<4)clearInterval(inter)},40)}};canvas.onclick=chute;canvas.ontouchstart=e=>{e.preventDefault();chute()}}
+function comida(){document.getElementById('gTitle').innerText='🍔 Clicker Comidinhas';let foods=[],sc=0,em=['🍔','🍕','🍟','🌭'];function draw(){ctx.clearRect(0,0,360,560);ctx.fillStyle='#1a0a0a';ctx.fillRect(0,0,360,560);for(let i=foods.length-1;i>=0;i--){let f=foods[i];f.y+=f.vy;ctx.font='38px Arial';ctx.fillText(f.e,f.x,f.y);if(f.y>580)foods.splice(i,1)}loop=requestAnimationFrame(draw)}draw();setInterval(()=>{foods.push({x:Math.random()*300+20,y:-20,vy:2+Math.random()*2.5,e:em[Math.floor(Math.random()*em.length)]})},350);let pegar=e=>{let r=canvas.getBoundingClientRect();let t=e.touches?e.touches[0]:e;let tx=t.clientX-r.left,ty=t.clientY-r.top;for(let i=foods.length-1;i>=0;i--){let f=foods[i];if(Math.hypot(f.x-tx,f.y-ty)<45){foods.splice(i,1);sc++;setScore(sc);break}}};canvas.onclick=pegar;canvas.ontouchstart=e=>{e.preventDefault();pegar(e)}}
+function pintar(){document.getElementById('gTitle').innerText='🎨 Pintar';ctx.clearRect(0,0,360,560);ctx.fillStyle='#fff';ctx.fillRect(0,0,360,560);ctx.fillStyle='#000';ctx.font='bold 18px Arial';ctx.textAlign='center';ctx.fillText('Desenhe com o dedo! 👇',180,30);let draw=false;function pos(e){let r=canvas.getBoundingClientRect();let t=e.touches?e.touches[0]:e;return{x:t.clientX-r.left,y:t.clientY-r.top}}canvas.onmousedown=e=>{draw=true;let p=pos(e);ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.strokeStyle='#ff0000';ctx.lineWidth=8;ctx.lineCap='round'};canvas.onmousemove=e=>{if(!draw)return;let p=pos(e);ctx.lineTo(p.x,p.y);ctx.stroke()};canvas.onmouseup=()=>draw=false;canvas.ontouchstart=e=>{e.preventDefault();draw=true;let p=pos(e);ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.strokeStyle='#ff0000';ctx.lineWidth=10;ctx.lineCap='round'};canvas.ontouchmove=e=>{e.preventDefault();if(!draw)return;let p=pos(e);ctx.lineTo(p.x,p.y);ctx.stroke()};canvas.ontouchend=()=>draw=false}
+function pac(){document.getElementById('gTitle').innerText='👾 Pac-Man';let px=180,py=280,fruits=[],sc=0;let em=['🍒','🍓','🍎'];for(let i=0;i<10;i++)fruits.push({x:Math.random()*300+30,y:Math.random()*400+80,e:em[Math.floor(Math.random()*em.length)]});function draw(){ctx.clearRect(0,0,360,560);ctx.fillStyle='#000';ctx.fillRect(0,0,360,560);fruits.forEach(f=>{ctx.font='26px Arial';ctx.fillText(f.e,f.x,f.y)});ctx.font='30px Arial';ctx.fillText('😋',px-15,py+10);let idx=fruits.findIndex(f=>Math.hypot(f.x-px,f.y-py)<28);if(idx>=0){fruits.splice(idx,1);sc++;setScore(sc);if(fruits.length==0){for(let i=0;i<10;i++)fruits.push({x:Math.random()*300+30,y:Math.random()*400+80,e:em[Math.floor(Math.random()*em.length)]})}}loop=requestAnimationFrame(draw)}draw();let mv=e=>{let r=canvas.getBoundingClientRect();let t=e.touches?e.touches[0]:e;px=t.clientX-r.left;py=t.clientY-r.top};canvas.onmousemove=mv;canvas.ontouchmove=e=>{e.preventDefault();mv(e)}}
+function race(){document.getElementById('gTitle').innerText='🏃 TikTok Race';let p1=0,p2=0;function draw(){ctx.clearRect(0,0,360,560);ctx.fillStyle='#222';ctx.fillRect(0,0,360,560);ctx.fillStyle='#444';ctx.fillRect(20,130,320,12);ctx.fillRect(20,330,320,12);ctx.fillStyle='#22c55e';ctx.fillRect(20,130,p1*3.2,32);ctx.fillStyle='#facc15';ctx.fillRect(20,330,p2*3.2,32);ctx.font='42px Arial';ctx.fillText('🏃',22+p1*3.2,156);ctx.fillText('🏃‍♀️',22+p2*3.2,356);ctx.fillStyle='#fff';ctx.font='bold 16px Arial';ctx.fillText('VOCÊ '+Math.floor(p1)+'%',30,120);ctx.fillText('BOT '+Math.floor(p2)+'%',30,320);if(p1>=100||p2>=100){ctx.font='bold 30px Arial';ctx.textAlign='center';ctx.fillText(p1>=100?'VOCÊ VENCEU! 🏆':'BOT VENCEU!',180,260);return}loop=requestAnimationFrame(draw)}draw();let run=()=>{p1+=5+Math.random()*5;p2+=Math.random()*6;setScore(Math.floor(p1))};canvas.onclick=run;canvas.ontouchstart=e=>{e.preventDefault();run()}}
+function roleta(){document.getElementById('gTitle').innerText='🎡 Roleta';let ang=0,vel=0,gir=false,nomes=['Ana Ganhou','Joao Ganhou','Tente de novo','Maria Ganhou','50 Pontos','Pedro Ganhou'];function draw(){ctx.clearRect(0,0,360,560);ctx.fillStyle='#111';ctx.fillRect(0,0,360,560);ctx.save();ctx.translate(180,280);ctx.rotate(ang);for(let i=0;i<6;i++){ctx.beginPath();ctx.moveTo(0,0);ctx.arc(0,0,120,i*Math.PI/3,(i+1)*Math.PI/3);ctx.fillStyle=i%2?'#5b21b6':'#facc15';ctx.fill();ctx.strokeStyle='#fff';ctx.stroke();ctx.save();ctx.rotate(i*Math.PI/3+0.4);ctx.fillStyle='#fff';ctx.font='bold 11px Arial';ctx.fillText(nomes[i],22,0);ctx.restore()}ctx.restore();ctx.fillStyle='#fff';ctx.beginPath();ctx.moveTo(180,140);ctx.lineTo(165,165);ctx.lineTo(195,165);ctx.fill();ctx.fillStyle='#facc15';ctx.font='bold 14px Arial';ctx.textAlign='center';ctx.fillText(gir?'GIRANDO...':'TOQUE PARA GIRAR',180,500);if(gir){ang+=vel;vel*=0.985;if(vel<0.005){gir=false;let idx=Math.floor(((2*Math.PI-ang%(2*Math.PI))%(2*Math.PI))/(Math.PI/3));ctx.fillStyle='#22c55e';ctx.font='bold 20px Arial';ctx.fillText('🎉 '+nomes[idx%6],180,460)}}loop=requestAnimationFrame(draw)}draw();let spin=()=>{if(!gir){vel=0.45+Math.random()*0.4;gir=true}};canvas.onclick=spin;canvas.ontouchstart=e=>{e.preventDefault();spin()}}
+
+function crc(s){let c=0xFFFF;for(let i=0;i<s.length;i++){c^=s.charCodeAt(i)<<8;for(let j=0;j<8;j++)c=c&0x8000?(c<<1)^0x1021:c<<1}return(c&0xFFFF).toString(16).toUpperCase().padStart(4,'0')}function f(id,v){return id+String(v.length).padStart(2,'0')+v}
+function gerarPIX(v){let pay=f('00','BR.GOV.BCB.PIX')+f('01','92981661567');let sem='00020101021226'+f('26',pay)+f('52','0000')+f('53','986')+f('54',parseFloat(v).toFixed(2))+f('58','BR')+f('59','ALINER RAQUEL')+f('60','MANAUS')+f('62',f('05','***'))+'6304';let full=sem+crc(sem);document.getElementById('code').innerText=full;document.getElementById('qrimg').src='https://api.qrserver.com/v1/create-qr-code/?size=320x320&data='+encodeURIComponent(full)}
+let iv=setInterval(()=>{if(pago)return;if(tempo>0){tempo--;let m=Math.floor(tempo/60),s=tempo%60;document.getElementById('timer').innerText='⏱️ Grátis: '+m+':'+String(s).padStart(2,'0');if(tempo==0){document.getElementById('bloq').classList.add('show');document.getElementById('timer').innerText='🔒 Acabou';document.getElementById('timer').style.background='#ff4444'}}},1000);
+if(pago){document.getElementById('timer').innerText='✅ '+pago+' LIBERADO';document.getElementById('timer').style.background='#22c55e'}
+</script>
+</body>
+  </html>
