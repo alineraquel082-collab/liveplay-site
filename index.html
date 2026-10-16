@@ -1,85 +1,74 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#08051a">
-<meta name="description" content="LivePlay — jogos e ferramentas criativas para preparar lives no TikTok e Kwai.">
-<title>LivePlay — Jogue • Transmita • Conquiste</title>
+<title>LivePlay - Jogos Infinitos para Live</title>
 <style>
-:root{--bg:#08051a;--panel:#100b2b;--panel2:#151039;--line:#5125a8;--pink:#ed20ff;--purple:#8b35ff;--cyan:#48e7ff;--text:#fff;--muted:#c7bfeb}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 80% 0%,#241052 0,transparent 38%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}a{color:inherit;text-decoration:none}button,input{font:inherit}.wrap{width:min(1180px,92%);margin:auto}
-header{position:sticky;top:0;z-index:10;background:#08051aeb;backdrop-filter:blur(16px);border-bottom:1px solid #34205f}
-.nav{height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{display:flex;align-items:center;gap:10px;font-size:27px;font-weight:900;letter-spacing:-1px}.brand-mark{font-size:34px;color:var(--pink);filter:drop-shadow(0 0 10px #c51fff)}.brand span:last-child{background:linear-gradient(90deg,#fff,#e04cff);background-clip:text;color:transparent}.navlinks{display:flex;gap:23px;color:#e4def8;font-size:14px}.navlinks a:hover{color:#ff75ff}.pill,.btn{border:1px solid #9e39ff;border-radius:999px;padding:11px 18px;background:#180d3d;color:white;cursor:pointer;font-weight:750;transition:.2s}.btn{background:linear-gradient(100deg,#c314f4,#7939ff);border:0;box-shadow:0 5px 24px #8d25ff55}.btn:hover,.pill:hover{transform:translateY(-2px);filter:brightness(1.12)}.hero{padding:44px 0 38px;display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center;min-height:420px}.eyebrow{color:#ff8aff;text-transform:uppercase;letter-spacing:2px;font-weight:800;font-size:12px}.hero h1{font-size:clamp(38px,5vw,62px);line-height:1.03;letter-spacing:-2px;margin:12px 0 18px}.gradient{background:linear-gradient(90deg,#f328ff,#8b65ff,#4de8ff);background-clip:text;color:transparent}.hero p{color:var(--muted);font-size:17px;line-height:1.65;max-width:610px}.features{display:flex;flex-wrap:wrap;gap:10px;margin:23px 0}.feature{border:1px solid #392366;background:#110a2c;border-radius:12px;padding:10px 12px;font-size:12px;color:#e6ddff}.hero-art{position:relative}.hero-art img{width:100%;border-radius:22px;border:1px solid #6326bc;box-shadow:0 0 45px #a01cff2b;display:block}.section{padding:34px 0}.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:20px}.section h2{font-size:27px;margin:0 0 6px}.sub{color:var(--muted);margin:0}.games{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.game{background:linear-gradient(145deg,#17103a,#0d0923);border:1px solid #4e2b8b;border-radius:17px;padding:18px;min-height:190px;display:flex;flex-direction:column;align-items:flex-start}.game-icon{height:58px;width:58px;border-radius:16px;display:grid;place-items:center;font-size:30px;background:linear-gradient(135deg,#8b2aff,#ed20ff);box-shadow:0 0 22px #b21aff33;margin-bottom:13px}.game h3{margin:0 0 7px;font-size:19px}.game p{color:var(--muted);line-height:1.45;font-size:14px;margin:0 0 16px}.game button{margin-top:auto}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:18px}.panel{background:linear-gradient(145deg,#140e32,#0d0922);border:1px solid #3c2670;border-radius:18px;padding:24px}.panel h2{font-size:23px}.tool-list,.steps{display:grid;gap:12px;margin-top:18px}.tool{display:flex;align-items:center;gap:12px;background:#100b28;border:1px solid #30205c;padding:13px;border-radius:12px}.tool b{display:block}.tool small{color:var(--muted)}.tool-icon{font-size:23px;width:35px;text-align:center}.steps{counter-reset:step}.steps div{display:flex;gap:12px;align-items:flex-start;color:#e7e0fa;line-height:1.5}.steps div:before{counter-increment:step;content:counter(step);flex:0 0 29px;height:29px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,#c51aff,#6248ff);font-weight:800}.note{border-left:3px solid #ffce55;background:#21172d;padding:12px 14px;border-radius:7px;color:#eee3ff;font-size:13px;line-height:1.5;margin-top:18px}.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.plan{border:1px solid #49277d;border-radius:17px;padding:20px;background:#100b29}.plan.featured{border-color:#ec40ff;box-shadow:0 0 28px #a91fff25}.plan h3{margin:0}.price{font-size:28px;font-weight:900;margin:12px 0}.price small{font-size:12px;color:var(--muted);font-weight:500}.plan ul{padding-left:19px;color:var(--muted);font-size:14px;line-height:1.9}.plan .btn,.plan .pill{width:100%;margin-top:10px}.free-tag{color:#7bffcf;font-size:12px;font-weight:800}.footer{border-top:1px solid #38205d;padding:25px 0;color:#bfb5e3;font-size:13px}.footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
-.modal-backdrop{position:fixed;inset:0;background:#03010be8;display:none;align-items:center;justify-content:center;z-index:30;padding:18px}.modal-backdrop.open{display:flex}.modal{width:min(640px,100%);max-height:90vh;overflow:auto;background:#100b29;border:1px solid #7e39d9;border-radius:20px;padding:24px;box-shadow:0 0 55px #971fff55}.modal-head{display:flex;justify-content:space-between;gap:15px;align-items:center}.close{border:1px solid #563287;border-radius:50%;width:38px;height:38px;background:#21133f;color:white;cursor:pointer;font-size:20px}.game-stage{min-height:240px;background:radial-gradient(circle at center,#26125a,#08051a);border:1px solid #50318b;border-radius:14px;display:grid;place-items:center;position:relative;overflow:hidden;margin:16px 0}.game-stage canvas{width:100%;height:260px;display:block}.stage-controls{display:flex;gap:10px;flex-wrap:wrap}.game-stage .big-emoji{font-size:70px;animation:bob 1.5s infinite alternate}.game-stage .stage-label{position:absolute;bottom:12px;color:#d7c9ff;font-size:12px}.score{font-weight:800;color:#ff8aff}.search{background:#100b29;border:1px solid #4d2c80;color:white;border-radius:999px;padding:10px 14px;width:210px}.empty{display:none;color:var(--muted);padding:20px}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#20113d;border:1px solid #a34aff;padding:12px 18px;border-radius:12px;display:none;z-index:50;max-width:90%;text-align:center}.toast.show{display:block}@keyframes bob{to{transform:translateY(-15px) rotate(5deg)}}@media(max-width:850px){.navlinks{display:none}.hero{grid-template-columns:1fr;padding-top:30px}.hero-art{order:-1}.hero-art img{max-height:260px;object-fit:cover}.games{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.plans{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}.search{width:100%}}@media(max-width:480px){.brand{font-size:22px}.nav{height:65px}.nav>.pill{padding:9px 12px}.games{grid-template-columns:1fr}.hero h1{font-size:40px}.hero p{font-size:15px}.panel{padding:18px}}
+*{box-sizing:border-box}body{margin:0;background:#08051a;color:#fff;font-family:Arial,sans-serif}
+header{padding:15px;background:#0f0b2e;text-align:center;font-weight:900;font-size:20px;border-bottom:2px solid #5b21b6}
+main{max-width:1100px;margin:auto;padding:15px}
+h2{color:#a78bfa}
+.jogos{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
+.jogo{background:#151039;border:1px solid #3b2a8a;border-radius:14px;padding:15px;text-align:center;cursor:pointer;transition:.2s}
+.jogo:hover{transform:scale(1.05);border-color:#8b5cf6;background:#1d1660}
+.jogo span{font-size:30px;display:block}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:99;padding:10px}
+#modal.aberto{display:flex}
+#caixa{background:#100b2b;border:2px solid #6d28d9;border-radius:16px;width:100%;max-width:500px;padding:15px}
+#gameFrame{width:100%;height:400px;border:0;background:#000;border-radius:12px}
+.btn{width:100%;padding:12px;background:#6d28d9;color:#fff;border:0;border-radius:10px;font-weight:bold;margin-top:10px}
+.topo-live{background:#1a144f;border-radius:12px;padding:12px;margin:15px 0;text-align:center}
 </style>
 </head>
 <body>
-<header><div class="wrap nav">
-<a class="brand" href="#inicio" aria-label="LivePlay início"><span class="brand-mark">🎮</span><span>LivePlay</span></a>
-<nav class="navlinks"><a href="#inicio">Início</a><a href="#jogos">Jogos</a><a href="#ferramentas">Ferramentas</a><a href="#tutorial">Tutorial</a><a href="#planos">Planos</a></nav>
-<a class="pill" href="#jogos">Experimentar grátis ↗</a>
-</div></header>
+<header>🎮 LivePlay - Plataforma de Jogos para Lives</header>
 <main>
-<section class="wrap hero" id="inicio">
-<div><div class="eyebrow">Jogue • Transmita • Conquiste</div>
-<h1>Sua live, <span class="gradient">do seu jeito!</span></h1>
-<p>Uma ideia de plataforma para criadores que querem deixar as lives mais divertidas sem precisar mostrar o rosto. Explore minijogos de demonstração, cenários e ferramentas criativas para preparar sua transmissão.</p>
-<div class="features"><span class="feature">🎮 Jogos leves</span><span class="feature">✨ Cenários personalizáveis</span><span class="feature">🛠️ Ferramentas simples</span><span class="feature">📱 Ideias para TikTok e Kwai</span></div>
-<a class="btn" href="#jogos">Começar agora ✦</a>
-<p style="font-size:12px;margin-top:13px">Protótipo gratuito • Sem cadastro • Em desenvolvimento</p></div>
-<div class="hero-art"><img src="assets/liveplay-hero.png" alt="Conceito visual neon da plataforma LivePlay"></div>
-</section>
-<section class="wrap section" id="jogos">
-<div class="section-head"><div><h2>🎮 Jogos em destaque</h2><p class="sub">Experimente os protótipos no próprio navegador.</p></div><input id="search" class="search" placeholder="🔎 Buscar jogos..." aria-label="Buscar jogos"></div>
-<div class="games" id="gameGrid">
-<article class="game" data-name="bolinha infinita bolinha arcade"><div class="game-icon">🟣</div><h3>Bolinha Infinita</h3><p>Uma bolinha animada para compor o visual da sua transmissão.</p><button class="btn launch" data-game="ball">Abrir jogo ↗</button></article>
-<article class="game" data-name="desafio de cores cores reflexo"><div class="game-icon">🟦</div><h3>Desafio de Cores</h3><p>Clique na cor certa e tente aumentar sua pontuação.</p><button class="btn launch" data-game="colors">Jogar agora ↗</button></article>
-<article class="game" data-name="roleta da sorte roleta aleatório"><div class="game-icon">🎡</div><h3>Roleta de Ideias</h3><p>Sorteie um tema ou desafio leve para sua live.</p><button class="btn launch" data-game="wheel">Girar roleta ↗</button></article>
-<article class="game" data-name="clicker zen cliques pontos"><div class="game-icon">🐼</div><h3>Clicker Zen</h3><p>Toque no botão para somar pontos e testar uma mecânica simples.</p><button class="btn launch" data-game="clicker">Jogar agora ↗</button></article>
-<article class="game" data-name="gatinho voador animação gato"><div class="game-icon">🐱</div><h3>Gatinho Voador</h3><p>Uma animação divertida para deixar aberta durante a transmissão.</p><button class="btn launch" data-game="cat">Ver animação ↗</button></article>
-<article class="game" data-name="quebra blocos puzzle blocos"><div class="game-icon">🧩</div><h3>Quebra-Blocos</h3><p>Uma tela de blocos coloridos com botão para mudar o cenário.</p><button class="btn launch" data-game="blocks">Ver cenário ↗</button></article>
-</div><p class="empty" id="empty">Não encontrei jogos com esse nome.</p>
-</section>
-<section class="wrap section two-col" id="ferramentas">
-<div class="panel"><h2>🛠️ Ferramentas para sua live</h2><p class="sub">Pequenas ferramentas para personalizar a transmissão.</p>
-<div class="tool-list"><div class="tool"><span class="tool-icon">🌌</span><div><b>Cenários animados</b><small>Fundos e animações para capturar na transmissão.</small></div></div><div class="tool"><span class="tool-icon">💬</span><div><b>Textos e overlays</b><small>Mensagens na tela, título e lembretes.</small></div></div><div class="tool"><span class="tool-icon">🎨</span><div><b>Personalização</b><small>Escolha cores e estilo do cenário de demonstração.</small></div></div><div class="tool"><span class="tool-icon">⏱️</span><div><b>Contador de sessão</b><small>Use um cronômetro para organizar sua transmissão.</small></div></div></div>
+<div class="topo-live">
+<h3 style="margin:0">🔴 Use na sua Live do TikTok / Kwai</h3>
+<p style="font-size:13px;opacity:.7">Abra este site no PC > Abra TikTok Live Studio > Capture a Janela > Pronto, live infinita sem rosto!</p>
 </div>
-<div class="panel" id="tutorial"><h2>🚀 Como preparar sua transmissão</h2><p class="sub">Roteiro inicial para testar no computador.</p>
-<div class="steps"><div>Escolha um jogo ou cenário de demonstração acima.</div><div>Abra-o em tela cheia e ajuste o tamanho da janela.</div><div>Se usar OBS Studio, adicione uma captura de janela ou de tela.</div><div>Confira as regras e os requisitos atuais do TikTok ou Kwai antes de iniciar a live.</div></div>
-<div class="note">Importante: este protótipo não se conecta diretamente às contas do TikTok ou Kwai e não garante monetização. A disponibilidade de lives e recursos de ganhos depende das regras de cada plataforma.</div>
+
+<h2>🕹️ Jogos em Destaque - Clique pra Jogar</h2>
+<div class="jogos" id="grid"></div>
+
+<div style="margin-top:25px;background:#151039;padding:15px;border-radius:12px">
+<h3>🛠️ Ferramentas para sua Live</h3>
+<p>⏱️ Cronômetro: <b id="timer">00:00</b> <button onclick="startTimer()">Iniciar</button></p>
+<p>🎲 Roleta: <b id="roleta">?</b> <button onclick="rodar()">Rodar Nomes</button></p>
+<p>👥 Viewers Fake: <b id="view">127</b> <button onclick="document.getElementById('view').innerText++">+1</button></p>
 </div>
-</section>
-<section class="wrap section" id="planos"><div class="section-head"><div><h2>💜 Planos para o futuro</h2><p class="sub">Por enquanto, esta demonstração é gratuita e não recebe pagamentos.</p></div></div>
-<div class="plans"><article class="plan"><h3>Gratuito</h3><div class="price">R$ 0<small>/sempre nesta demo</small></div><ul><li>Protótipos básicos</li><li>Ferramentas de demonstração</li><li>Sem cadastro</li></ul><button class="btn" onclick="showToast('Você já está usando a demonstração gratuita!')">Usar grátis</button></article>
-<article class="plan featured"><h3>Básico (ideia futura)</h3><div class="price">R$ 9,90<small>/mês, preço hipotético</small></div><ul><li>Mais cenários originais</li><li>Mais opções de personalização</li><li>Novas ferramentas, se desenvolvidas</li></ul><button class="pill" onclick="showToast('Planos pagos ainda não estão disponíveis.')">Em planejamento</button></article>
-<article class="plan"><h3>Premium (ideia futura)</h3><div class="price">R$ 19,90<small>/mês, preço hipotético</small></div><ul><li>Pacotes extras de temas</li><li>Mais recursos criativos</li><li>Suporte, se implementado</li></ul><button class="pill" onclick="showToast('Ainda não vendemos assinaturas. Primeiro vamos testar a ideia!')">Em planejamento</button></article></div>
-</section>
 </main>
-<footer class="footer"><div class="wrap footer-inner"><div><b style="color:#f17cff;font-size:20px">🎮 LivePlay</b><br>Jogue • Transmita • Conquiste</div><div>Protótipo independente em desenvolvimento.<br>Não afiliado ao TikTok ou ao Kwai.</div><div>Feito para testar uma ideia com criatividade 💜</div></div></footer>
-<div class="modal-backdrop" id="gameModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal"><div class="modal-head"><div><div class="eyebrow">LivePlay • minijogos</div><h2 id="modalTitle" style="margin:5px 0">Jogo</h2></div><button class="close" id="closeModal" aria-label="Fechar">×</button></div><div id="stage" class="game-stage"></div><div id="gameDesc" class="sub"></div><p>Pontos: <span class="score" id="score">0</span></p><div class="stage-controls"><button class="btn" id="gameAction">Começar</button><button class="pill" id="fullscreen">Tela cheia</button><button class="pill" id="copyTip">Copiar dica de transmissão</button></div><p style="color:var(--muted);font-size:12px;margin-top:16px">Dica: no computador, você pode testar a captura desta janela com um programa de transmissão. Recursos de captura e transmissão dependem do seu dispositivo e das regras da plataforma.</p></div></div>
-<div class="toast" id="toast" role="status"></div>
+
+<div id="modal"><div id="caixa">
+<div style="display:flex;justify-content:space-between"><h3 id="titulo" style="margin:0"></h3><button onclick="fechar()" style="background:none;border:0;color:#fff;font-size:22px">X</button></div>
+<iframe id="gameFrame"></iframe>
+<p>Pontos: <span id="pontos">0</span></p>
+<button class="btn" onclick="fechar()">Fechar Jogo</button>
+</div></div>
+
 <script>
-const modal=document.getElementById('gameModal'),stage=document.getElementById('stage'),title=document.getElementById('modalTitle'),desc=document.getElementById('gameDesc'),scoreEl=document.getElementById('score'),action=document.getElementById('gameAction');
-let current='',score=0,ballFrame=null;
-const games={
- ball:{title:'Bolinha Infinita',desc:'Animação decorativa para usar como cenário. Não envia dados para plataformas externas.',label:'Iniciar animação',draw(){stage.innerHTML='<div class="big-emoji">🟣</div><div class="stage-label">BOLINHA INFINITA • DEMONSTRAÇÃO</div>';action.textContent='Pausar / continuar';}},
- colors:{title:'Desafio de Cores',desc:'Clique no botão quando a cor sorteada combinar com a instrução.',label:'Nova rodada',draw(){const colors=[['ROXO','#9b5cff'],['ROSA','#f32ee8'],['AZUL','#29bfff'],['VERDE','#33e8a1'],['AMARELO','#ffcf44']];const target=colors[Math.floor(Math.random()*colors.length)];const shown=colors[Math.floor(Math.random()*colors.length)];stage.innerHTML=`<div style="text-align:center"><p style="color:#d8caff">ENCONTRE A COR: <b>${target[0]}</b></p><button id="colorButton" style="background:${shown[1]};width:130px;height:95px;border:3px solid white;border-radius:20px;cursor:pointer;color:#111;font-weight:900">${shown[0]}</button><p style="color:#d8caff">Clique se a cor estiver correta!</p></div>`;document.getElementById('colorButton').onclick=()=>{if(shown[0]===target[0]){score++;showToast('Acertou! +1 ponto');}else{score=Math.max(0,score-1);showToast('Quase! Tente outra rodada.');}scoreEl.textContent=score;games.colors.draw();};action.textContent='Nova rodada';}},
- wheel:{title:'Roleta de Ideias',desc:'Use as sugestões como brincadeira. Não promete prêmios ou ganhos.',label:'Girar',draw(){stage.innerHTML='<div style="text-align:center"><div id="wheelEmoji" style="font-size:90px;transition:transform 1s">🎡</div><p id="wheelText" style="font-size:18px;color:#f3caff">Pronto para sortear?</p></div>';action.textContent='Girar roleta';}},
- clicker:{title:'Clicker Zen',desc:'Clique para somar pontos. Um minijogo local de demonstração.',label:'+1 ponto',draw(){stage.innerHTML='<div style="text-align:center"><div style="font-size:60px">🐼💜</div><button id="clickerButton" class="btn" style="margin-top:12px">TOQUE AQUI +1</button></div>';document.getElementById('clickerButton').onclick=()=>{score++;scoreEl.textContent=score;};action.textContent='Reiniciar pontos';}},
- cat:{title:'Gatinho Voador',desc:'Animação decorativa sem controle externo.',label:'Mudar animação',draw(){stage.innerHTML='<div class="big-emoji">🐱✨</div><div class="stage-label">GATINHO VOADOR • DEMONSTRAÇÃO</div>';action.textContent='Mudar mascote';}},
- blocks:{title:'Quebra-Blocos',desc:'Cenário colorido demonstrativo, ainda sem mecânica de jogo completa.',label:'Mudar cenário',draw(){const blocks=['#f329ff','#38eaff','#874bff','#ffcd42','#42f5a7','#ff5c91'];stage.innerHTML='<div style="display:grid;grid-template-columns:repeat(4,50px);gap:7px">'+Array.from({length:12},()=>`<div style="width:50px;height:34px;border-radius:6px;background:${blocks[Math.floor(Math.random()*blocks.length)]};box-shadow:0 0 14px #a32aff66"></div>`).join('')+'</div><div class="stage-label">QUEBRA-BLOCOS • CENÁRIO DE DEMONSTRAÇÃO</div>';action.textContent='Novo cenário';}}
+const modal=document.getElementById('modal'), frame=document.getElementById('gameFrame');
+let pontos=0, t=0, ti;
+function startTimer(){clearInterval(ti);t=0;ti=setInterval(()=>{t++;let m=String(Math.floor(t/60)).padStart(2,'0'),s=String(t%60).padStart(2,'0');document.getElementById('timer').innerText=m+':'+s},1000)}
+function rodar(){let n=['Seguidor1','Seguidor2','Aline','Maria','João'];document.getElementById('roleta').innerText=n[Math.floor(Math.random()*n.length)]}
+
+const jogos={
+bolinha:{nome:'Bolinha Infinita',icon:'⚽',html:`<canvas id=c width=460 height=380 style=width:100%;background:#070515></canvas><script>let x=230,y=190,vx=4,vy=4,c=document.getElementById('c'),ctx=c.getContext('2d');setInterval(()=>{ctx.clearRect(0,0,460,380);ctx.beginPath();ctx.arc(x,y,12,0,7);ctx.fillStyle='#a78bfa';ctx.fill();x+=vx;y+=vy;if(x<12||x>448)vx*=-1;if(y<12||y>368)vy*=-1;parent.postMessage('p','*')},16)<\/script>`},
+clicker:{nome:'Clicker Zen',icon:'🍪',html:`<div style=display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;background:#0a0a0a><button style=font-size:60px;padding:20px;border-radius:20px onclick="parent.postMessage('p','*');this.style.transform='scale(1.2)';setTimeout(()=>this.style.transform='scale(1)',100)">🍪</button><p>Clique sem parar!</p></div>`},
+cores:{nome:'Desafio de Cores',icon:'🎨',html:`<div style=text-align:center;padding:30px;background:#111;height:100%><h1 id=h style=color:red>VERMELHO</h1><button style=padding:15px;font-size:18px onclick="parent.postMessage('p','*');let c=['red','blue','green','yellow'];h.style.color=c[Math.floor(Math.random()*4)]">ACERTOU? CLICA</button></div>`},
+gato:{nome:'Gatinho Voador',icon:'🐱',html:`<canvas id=c width=460 height=380 style=width:100%;background:skyblue></canvas><script>let y=190,vy=0;let c=document.getElementById('c'),ctx=c.getContext('2d');c.onclick=()=>vy=-6;setInterval(()=>{vy+=0.3;y+=vy;if(y>370)y=370;if(y<0)y=0;ctx.clearRect(0,0,460,380);ctx.fillText('🐱',50,y);ctx.fillStyle='#000';ctx.fillRect(200,y,30,30);if(y>360||y<5)parent.postMessage('p','*')},20)<\/script>`},
+blocos:{nome:'Quebra Blocos',icon:'🧱',html:`<canvas id=c width=460 height=380 style=width:100%;background:#111></canvas><script>let x=230,y=350,vx=3,vy=-3;let c=document.getElementById('c'),ctx=c.getContext('2d'),blocos=[];for(let i=0;i<20;i++)blocos.push({x:(i%5)*80+30,y:Math.floor(i/5)*25+20});setInterval(()=>{ctx.clearRect(0,0,460,380);blocos.forEach(b=>{ctx.fillStyle='#6d28d9';ctx.fillRect(b.x,b.y,60,15)});ctx.beginPath();ctx.arc(x,y,8,0,7);ctx.fillStyle='#fff';ctx.fill();x+=vx;y+=vy;if(x<0||x>460)vx*=-1;if(y<0)vy*=-1;if(y>380){y=350;x=230}parent.postMessage('p','*')},15)<\/script>`},
+roleta:{nome:'Roleta Aleatória',icon:'🎡',html:`<div style=text-align:center;padding:50px;background:#0f0b2e;height:100%><h1 id=r style=font-size:50px>🎡</h1><button style=padding:15px onclick="let e=['💎','🍀','🔥','⭐'];r.innerText=e[Math.floor(Math.random()*4)];parent.postMessage('p','*')">GIRAR</button></div>`}
 };
-function openGame(id){current=id;score=0;scoreEl.textContent='0';const g=games[id];title.textContent=g.title;desc.textContent=g.desc;g.draw();modal.classList.add('open');}
-document.querySelectorAll('.launch').forEach(b=>b.addEventListener('click',()=>openGame(b.dataset.game)));
-document.getElementById('closeModal').onclick=()=>modal.classList.remove('open');
-modal.addEventListener('click',e=>{if(e.target===modal)modal.classList.remove('open')});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')modal.classList.remove('open')});
-action.addEventListener('click',()=>{if(!current)return;const g=games[current];if(current==='wheel'){const ideas=['Faça uma pergunta divertida ao chat!','Escolha uma cor para o próximo cenário!','Conte uma curiosidade sobre seu jogo favorito!','Convide o chat para votar no próximo jogo!','Faça uma pausa para água!'];const chosen=ideas[Math.floor(Math.random()*ideas.length)];document.getElementById('wheelEmoji').style.transform=`rotate(${720+Math.random()*720}deg)`;document.getElementById('wheelText').textContent=chosen;score++;scoreEl.textContent=score;}else if(current==='clicker'){score=0;scoreEl.textContent='0';g.draw();}else if(current==='colors'){g.draw();}else g.draw();});
-document.getElementById('fullscreen').onclick=()=>{if(stage.requestFullscreen)stage.requestFullscreen().catch(()=>showToast('Tela cheia não disponível neste navegador.'));else showToast('Tente abrir em um navegador atualizado no computador.');};
-document.getElementById('copyTip').onclick=()=>{const t='Dica LivePlay: escolha um jogo, abra em tela cheia e teste a captura de janela no seu programa de transmissão. Verifique as regras atuais da plataforma.';if(navigator.clipboard){navigator.clipboard.writeText(t).then(()=>showToast('Dica copiada!')).catch(()=>showToast(t));}else showToast(t);};
-document.getElementById('search').addEventListener('input',e=>{const q=e.target.value.toLowerCase().trim();let shown=0;document.querySelectorAll('.game').forEach(card=>{const match=(card.dataset.name+' '+card.innerText).toLowerCase().includes(q);card.style.display=match?'flex':'none';if(match)shown++;});document.getElementById('empty').style.display=shown?'none':'block';});
-let toastTimer;function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),3000);}
+
+const grid=document.getElementById('grid');
+for(let id in jogos){
+ let d=document.createElement('div');d.className='jogo';d.innerHTML=`<span>${jogos[id].icon}</span>${jogos[id].nome}`;d.onclick=()=>abrir(id);grid.appendChild(d);
+}
+function abrir(id){document.getElementById('titulo').innerText=jogos[id].nome;pontos=0;document.getElementById('pontos').innerText=0;frame.srcdoc=jogos[id].html;modal.classList.add('aberto')}
+function fechar(){modal.classList.remove('aberto');frame.srcdoc=''}
+window.addEventListener('message',e=>{if(e.data==='p'){pontos++;document.getElementById('pontos').innerText=pontos}})
 </script>
 </body>
 </html>
