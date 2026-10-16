@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -9,66 +10,77 @@
 header{padding:15px;background:#0f0b2e;text-align:center;font-weight:900;font-size:20px;border-bottom:2px solid #5b21b6}
 main{max-width:1100px;margin:auto;padding:15px}
 h2{color:#a78bfa}
+.planos{display:flex;gap:12px;justify-content:center;margin:20px 0;flex-wrap:wrap}
+.plano{background:#151039;border:2px solid #333;border-radius:16px;padding:18px;width:300px;text-align:center}
+.plano.plus{border-color:#22c55e}
+.plano.premium{border-color:#facc15;background:#1d1650;transform:scale(1.03)}
+.preco{font-size:32px;font-weight:900;color:#a78bfa;margin:10px 0}
+.plano ul{list-style:none;padding:0;text-align:left;font-size:14px;margin:12px 0}
+.plano ul li{margin:5px 0}
+.btn{width:100%;padding:14px;border:0;border-radius:10px;font-weight:900;cursor:pointer;font-size:15px}
+.btn-plus{background:#22c55e;color:#000}
+.btn-prem{background:#facc15;color:#000}
+.btn-pix{background:#22c55e;color:#000;margin-top:12px}
 .jogos{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px}
 .jogo{background:#151039;border:1px solid #3b2a8a;border-radius:14px;padding:15px;text-align:center;cursor:pointer;transition:.2s}
 .jogo:hover{transform:scale(1.05);border-color:#8b5cf6;background:#1d1660}
 .jogo span{font-size:30px;display:block}
-#modal{position:fixed;inset:0;background:rgba(0,0,0,.8);display:none;align-items:center;justify-content:center;z-index:99;padding:10px}
-#modal.aberto{display:flex}
-#caixa{background:#100b2b;border:2px solid #6d28d9;border-radius:16px;width:100%;max-width:500px;padding:15px}
-#gameFrame{width:100%;height:400px;border:0;background:#000;border-radius:12px}
-.btn{width:100%;padding:12px;background:#6d28d9;color:#fff;border:0;border-radius:10px;font-weight:bold;margin-top:10px}
+#modal,#payModal{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:99;padding:15px}
+#modal.aberto,#payModal.aberto{display:flex}
+#caixa,.caixaPay{background:#100b2b;border:2px solid #6d28d9;border-radius:16px;width:100%;max-width:450px;padding:18px}
+.caixaPay{background:#fff;color:#000;text-align:center}
+.pix-key{background:#eee;padding:12px;border-radius:8px;font-weight:900;font-size:22px;margin:12px 0}
+#gameFrame{width:100%;height:380px;border:0;background:#000;border-radius:12px}
 .topo-live{background:#1a144f;border-radius:12px;padding:12px;margin:15px 0;text-align:center}
 </style>
 </head>
 <body>
 <header>🎮 LivePlay - Plataforma de Jogos para Lives</header>
 <main>
+
+<div class="planos">
+<div class="plano plus">
+<h3>🌟 PLUS</h3><div class="preco">R$ 9,90</div>
+<ul><li>✅ Remove anúncios</li><li>✅ Libera Snake, Flappy e 10 jogos</li><li>✅ Suporte no Zap</li></ul>
+<button class="btn btn-plus" onclick="abrirPay('PLUS','9,90')">ASSINAR PLUS</button>
+</div>
+<div class="plano premium">
+<h3>👑 PREMIUM - MAIS VENDIDO</h3><div class="preco">R$ 19,90</div>
+<ul><li>✅ Tudo do PLUS</li><li>✅ Pac-Man, TikTok Race e 30+ jogos</li><li>✅ Jogos sem rosto p/ live 24h</li><li>✅ Atualizações todo mês</li></ul>
+<button class="btn btn-prem" onclick="abrirPay('PREMIUM','19,90')">ASSINAR PREMIUM</button>
+</div>
+</div>
+
 <div class="topo-live">
 <h3 style="margin:0">🔴 Use na sua Live do TikTok / Kwai</h3>
-<p style="font-size:13px;opacity:.7">Abra este site no PC > Abra TikTok Live Studio > Capture a Janela > Pronto, live infinita sem rosto!</p>
+<p style="font-size:13px;opacity:.7">Abra este site no PC > TikTok Live Studio > Capture a Janela > Live infinita sem rosto!</p>
 </div>
 
 <h2>🕹️ Jogos em Destaque - Clique pra Jogar</h2>
 <div class="jogos" id="grid"></div>
-
-<div style="margin-top:25px;background:#151039;padding:15px;border-radius:12px">
-<h3>🛠️ Ferramentas para sua Live</h3>
-<p>⏱️ Cronômetro: <b id="timer">00:00</b> <button onclick="startTimer()">Iniciar</button></p>
-<p>🎲 Roleta: <b id="roleta">?</b> <button onclick="rodar()">Rodar Nomes</button></p>
-<p>👥 Viewers Fake: <b id="view">127</b> <button onclick="document.getElementById('view').innerText++">+1</button></p>
-</div>
 </main>
 
 <div id="modal"><div id="caixa">
 <div style="display:flex;justify-content:space-between"><h3 id="titulo" style="margin:0"></h3><button onclick="fechar()" style="background:none;border:0;color:#fff;font-size:22px">X</button></div>
 <iframe id="gameFrame"></iframe>
 <p>Pontos: <span id="pontos">0</span></p>
-<button class="btn" onclick="fechar()">Fechar Jogo</button>
+<button class="btn" style="background:#6d28d9;color:#fff" onclick="fechar()">Fechar Jogo</button>
+</div></div>
+
+<div id="payModal" onclick="fecharPay()"><div class="caixaPay" onclick="event.stopPropagation()">
+<h2 id="payTitulo">Pagar com PIX</h2>
+<p>Valor: <b id="payValor"></b></p>
+<p style="font-size:13px;margin-top:8px">Chave PIX Celular:</p>
+<div class="pix-key">92981661567</div>
+<button class="btn btn-pix" onclick="copiarPix()">📋 COPIAR CHAVE PIX</button>
+<p style="font-size:12px;margin-top:12px;color:#444">Após pagar, envie o comprovante no WhatsApp:<br><b>(92) 98166-1567</b><br>Libero seu acesso Premium na hora!</p>
+<button style="margin-top:10px;background:none;border:none;color:#888" onclick="fecharPay()">Fechar</button>
 </div></div>
 
 <script>
+let pontos=0;
 const modal=document.getElementById('modal'), frame=document.getElementById('gameFrame');
-let pontos=0, t=0, ti;
-function startTimer(){clearInterval(ti);t=0;ti=setInterval(()=>{t++;let m=String(Math.floor(t/60)).padStart(2,'0'),s=String(t%60).padStart(2,'0');document.getElementById('timer').innerText=m+':'+s},1000)}
-function rodar(){let n=['Seguidor1','Seguidor2','Aline','Maria','João'];document.getElementById('roleta').innerText=n[Math.floor(Math.random()*n.length)]}
-
-const jogos={
-bolinha:{nome:'Bolinha Infinita',icon:'⚽',html:`<canvas id=c width=460 height=380 style=width:100%;background:#070515></canvas><script>let x=230,y=190,vx=4,vy=4,c=document.getElementById('c'),ctx=c.getContext('2d');setInterval(()=>{ctx.clearRect(0,0,460,380);ctx.beginPath();ctx.arc(x,y,12,0,7);ctx.fillStyle='#a78bfa';ctx.fill();x+=vx;y+=vy;if(x<12||x>448)vx*=-1;if(y<12||y>368)vy*=-1;parent.postMessage('p','*')},16)<\/script>`},
-clicker:{nome:'Clicker Zen',icon:'🍪',html:`<div style=display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;background:#0a0a0a><button style=font-size:60px;padding:20px;border-radius:20px onclick="parent.postMessage('p','*');this.style.transform='scale(1.2)';setTimeout(()=>this.style.transform='scale(1)',100)">🍪</button><p>Clique sem parar!</p></div>`},
-cores:{nome:'Desafio de Cores',icon:'🎨',html:`<div style=text-align:center;padding:30px;background:#111;height:100%><h1 id=h style=color:red>VERMELHO</h1><button style=padding:15px;font-size:18px onclick="parent.postMessage('p','*');let c=['red','blue','green','yellow'];h.style.color=c[Math.floor(Math.random()*4)]">ACERTOU? CLICA</button></div>`},
-gato:{nome:'Gatinho Voador',icon:'🐱',html:`<canvas id=c width=460 height=380 style=width:100%;background:skyblue></canvas><script>let y=190,vy=0;let c=document.getElementById('c'),ctx=c.getContext('2d');c.onclick=()=>vy=-6;setInterval(()=>{vy+=0.3;y+=vy;if(y>370)y=370;if(y<0)y=0;ctx.clearRect(0,0,460,380);ctx.fillText('🐱',50,y);ctx.fillStyle='#000';ctx.fillRect(200,y,30,30);if(y>360||y<5)parent.postMessage('p','*')},20)<\/script>`},
-blocos:{nome:'Quebra Blocos',icon:'🧱',html:`<canvas id=c width=460 height=380 style=width:100%;background:#111></canvas><script>let x=230,y=350,vx=3,vy=-3;let c=document.getElementById('c'),ctx=c.getContext('2d'),blocos=[];for(let i=0;i<20;i++)blocos.push({x:(i%5)*80+30,y:Math.floor(i/5)*25+20});setInterval(()=>{ctx.clearRect(0,0,460,380);blocos.forEach(b=>{ctx.fillStyle='#6d28d9';ctx.fillRect(b.x,b.y,60,15)});ctx.beginPath();ctx.arc(x,y,8,0,7);ctx.fillStyle='#fff';ctx.fill();x+=vx;y+=vy;if(x<0||x>460)vx*=-1;if(y<0)vy*=-1;if(y>380){y=350;x=230}parent.postMessage('p','*')},15)<\/script>`},
-roleta:{nome:'Roleta Aleatória',icon:'🎡',html:`<div style=text-align:center;padding:50px;background:#0f0b2e;height:100%><h1 id=r style=font-size:50px>🎡</h1><button style=padding:15px onclick="let e=['💎','🍀','🔥','⭐'];r.innerText=e[Math.floor(Math.random()*4)];parent.postMessage('p','*')">GIRAR</button></div>`}
-};
-
-const grid=document.getElementById('grid');
-for(let id in jogos){
- let d=document.createElement('div');d.className='jogo';d.innerHTML=`<span>${jogos[id].icon}</span>${jogos[id].nome}`;d.onclick=()=>abrir(id);grid.appendChild(d);
-}
-function abrir(id){document.getElementById('titulo').innerText=jogos[id].nome;pontos=0;document.getElementById('pontos').innerText=0;frame.srcdoc=jogos[id].html;modal.classList.add('aberto')}
-function fechar(){modal.classList.remove('aberto');frame.srcdoc=''}
-window.addEventListener('message',e=>{if(e.data==='p'){pontos++;document.getElementById('pontos').innerText=pontos}})
-</script>
-</body>
-</html>
+const payModal=document.getElementById('payModal');
+function abrirPay(plano,valor){document.getElementById('payTitulo').innerText='Pagar '+plano+' com PIX';document.getElementById('payValor').innerText='R$ '+valor;payModal.classList.add('aberto')}
+function fecharPay(){payModal.classList.remove('aberto')}
+function copiarPix(){navigator.clipboard.writeText('92981661567');alert('PIX 92981661567 COPIADO! Cola no seu banco e paga. Depois me manda o comprovante no Zap
