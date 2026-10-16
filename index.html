@@ -1,21 +1,59 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LivePlay</title><style>*{box-sizing:border-box}body{margin:0;background:#08051a;color:#fff;font-family:Arial}header{padding:12px;background:#0f0b2e;text-align:center;font-weight:900;border-bottom:2px solid #5b21b6}.timer{position:fixed;top:10px;right:10px;background:#facc15;color:#000;padding:7px 14px;border-radius:20px;font-weight:900;z-index:999;font-size:12px}main{max-width:700px;margin:auto;padding:12px}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.jogo{background:#151039;border:2px solid #5b21b6;border-radius:16px;padding:18px;text-align:center;cursor:pointer;font-weight:700}.aviso{background:#1a144f;border:2px dashed #facc15;border-radius:14px;padding:12px;margin:12px 0}.aviso h3{margin:0 0 8px;color:#facc15;font-size:14px}.aviso ol{margin:0;padding-left:18px;font-size:13px;line-height:1.5}.aviso li{margin:4px 0}.tag{background:#22c55e;color:#000;padding:2px 8px;border-radius:6px;font-size:10px;font-weight:900}.plano{background:#151039;border:2px solid #333;border-radius:16px;padding:12px;margin:10px 0;text-align:center}.premium{border-color:#facc15}.btn{width:100%;padding:14px;border:0;border-radius:10px;font-weight:900;cursor:pointer;margin-top:6px}.btn-plus{background:#22c55e}.btn-prem{background:#facc15;color:#000}.tela{display:none}.tela.ativa{display:block}.card{background:#fff;color:#000;border-radius:18px;max-width:420px;width:100%;padding:20px;text-align:center;margin:20px auto}.qr{background:#f5f5f5;padding:10px;border-radius:12px}.pixcode{font-size:9px;word-break:break-all;background:#eee;padding:8px;border-radius:6px;text-align:left;margin:8px 0}.bloqueio{position:fixed;inset:0;background:rgba(0,0,0,.97);display:none;align-items:center;justify-content:center;z-index:1000;padding:15px}.bloqueio.show{display:flex}#gameArea{position:fixed;inset:0;background:#000;display:none;flex-direction:column;z-index:800}#gameArea.show{display:flex}#gHeader{padding:10px;background:#151039;display:flex;justify-content:space-between}#canvasWrap{flex:1;display:flex;align-items:center;justify-content:center}canvas{background:#000;border-radius:12px;max-width:98vw}</style></head><body><header>🎮 LivePlay - Jogos pra Live Sem Rosto</header><div class="timer" id="timer">⏱️ Grátis: 10:00</div>
 
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LivePlay - Tudo em 1</title><style>*{box-sizing:border-box}body{margin:0;background:#08051a;color:#fff;font-family:Arial}header{padding:15px;background:#0f0b2e;text-align:center;font-weight:900;border-bottom:2px solid #5b21b6}main{max-width:700px;margin:auto;padding:12px}.plano{background:#151039;border:2px solid #333;border-radius:16px;padding:16px;margin:12px 0;text-align:center}.plus{border-color:#22c55e}.premium{border-color:#facc15;background:#1d1650}.preco{font-size:30px;font-weight:900;color:#a78bfa}.btn{width:100%;padding:14px;border:0;border-radius:10px;font-weight:900;font-size:15px;cursor:pointer;margin-top:10px}.btn-plus{background:#22c55e}.btn-prem{background:#facc15}.tela{display:none}.tela.ativa{display:block}.card-pagar{background:#fff;color:#000;border-radius:18px;max-width:420px;width:100%;padding:20px;text-align:center;margin:20px auto}.qr{background:#f5f5f5;padding:10px;border-radius:12px;margin:12px 0}.pixcode{font-size:10px;word-break:break-all;background:#eee;padding:8px;border-radius:6px;text-align:left;margin:10px 0}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.jogo{background:#151039;border:2px solid #5b21b6;border-radius:14px;padding:30px;text-align:center;font-size:18px}</style></head><body><header>🎮 LivePlay</header>
+<div id="tela-venda" class="tela ativa"><main>
 
-<!-- TELA 1: VENDAS -->
-<div id="tela-venda" class="tela ativa"><main><div class="plano plus"><h3>🌟 PLUS</h3><div class="preco">R$ 9,90</div><button class="btn btn-plus" onclick="irPagar('PLUS','9.90')">ASSINAR PLUS</button></div><div class="plano premium"><h3>👑 PREMIUM</h3><div class="preco">R$ 19,90</div><button class="btn btn-prem" onclick="irPagar('PREMIUM','19.90')">ASSINAR PREMIUM</button></div></main></div>
+<!-- AVISO COMO TRANSMITIR -->
+<div class="aviso"><h3>🔴 COMO TRANSMITIR NA LIVE DO TIKTOK <span class="tag">NOVO</span></h3>
+<ol>
+<li><b>No PC:</b> Abra o <b>TikTok Live Studio</b></li>
+<li>Clique em <b>Adicionar Fonte > Captura de Janela</b></li>
+<li>Selecione o Chrome com este site aberto</li>
+<li>Clique no jogo que quer (ex: TikTok Race)</li>
+<li>Clique no botão <b>⛶ MODO LIVE</b> pra ficar tela cheia sem botões</li>
+<li>Pronto! Seu público já vê o jogo na live!</li>
+</ol>
+<p style="font-size:11px;margin:6px 0 0;color:#a78bfa">💡 Dica: Deixe o placar grande. É assim que as lives sem rosto ganham presente, o povo torce!</p>
+</div>
 
-<!-- TELA 2: PAGAMENTO COM QR CODE -->
-<div id="tela-pagar" class="tela"><div class="card-pagar"><h2 id="tit">PIX</h2><p>Valor <b id="val" style="font-size:24px;color:#6d28d9"></b></p><div class="qr"><img id="qrimg" width="260"></div><div class="pixcode" id="code"></div><button class="btn btn-plus" onclick="navigator.clipboard.writeText(document.getElementById('code').innerText);alert('PIX COPIADO!')">📋 COPIAR PIX</button><button class="btn" style="background:#6d28d9;color:#fff" onclick="liberar()">✅ JÁ PAGUEI, LIBERAR JOGOS</button><button class="btn" style="background:#ccc" onclick="voltar()">⬅️ VOLTAR</button><p style="font-size:11px;color:#888">PIX 92981661567 - Aliner Raquel</p></div></div>
+<div class="aviso" style="border-color:#22c55e"><h3 style="color:#22c55e">📱 COMO USAR NO CELULAR</h3>
+<ol>
+<li>Abra este site no celular</li>
+<li>Clique no jogo > jogue normal</li>
+<li>Pra transmitir: use 2 celulares, um jogando e outro fazendo live com câmera apontada pra tela</li>
+<li>Ou espelhe a tela no PC com ApowerMirror</li>
+</ol>
+</div>
 
-<!-- TELA 3: TODOS OS JOGOS GRÁTIS -->
-<div id="tela-premium" class="tela"><header style="background:#22c55e;color:#000">✅ <span id="planoTxt"></span> LIBERADO</header><main><h2>🎮 Todos os jogos liberados pra sua live!</h2><div class="grid"><div class="jogo">⚽<br>Bolinha</div><div class="jogo">🍪<br>Clicker</div><div class="jogo">🎨<br>Cores</div><div class="jogo">👾<br>Pac-Man</div><div class="jogo">🏃<br>TikTok Race</div><div class="jogo">🎡<br>Roleta</div></div><p style="background:#1a144f;padding:12px;border-radius:10px;margin-top:15px">🔴 TikTok Live Studio > Adicionar Fonte > Captura de Janela</p><button class="btn" style="background:#333;color:#fff" onclick="voltar()">⬅️ Sair</button></main></div>
+<h3>🕹️ Teste 10 min grátis - Clique e JOGUE DE VERDADE</h3>
+<div class="grid">
+<div class="jogo" onclick="openGame('bolinha')">⚽<br>Bolinha</div>
+<div class="jogo" onclick="openGame('clicker')">🍪<br>Clicker</div>
+<div class="jogo" onclick="openGame('cores')">🎨<br>Cores</div>
+<div class="jogo" onclick="openGame('pac')">👾<br>Pac-Man</div>
+<div class="jogo" onclick="openGame('race')">🏃<br>TikTok Race</div>
+<div class="jogo" onclick="openGame('roleta')">🎡<br>Roleta</div>
+</div>
+
+<div class="plano plus"><b>PLUS R$ 9,90</b><br><button class="btn btn-plus" onclick="irPagar('PLUS','9.90')">ASSINAR PLUS</button></div>
+<div class="plano premium"><b>PREMIUM R$ 19,90</b><br><button class="btn btn-prem" onclick="irPagar('PREMIUM','19.90')">ASSINAR PREMIUM</button></div>
+</main></div>
+
+<div id="tela-pagar" class="tela"><div class="card"><h2 id="tit">PIX</h2><p>Valor <b id="val" style="font-size:24px;color:#6d28d9"></b></p><div class="qr"><img id="qrimg" width="260"></div><div class="pixcode" id="code"></div><button class="btn btn-plus" onclick="navigator.clipboard.writeText(document.getElementById('code').innerText);alert('PIX COPIADO')">📋 COPIAR PIX</button><div id="waitMsg" style="background:#fff3cd;padding:10px;border-radius:8px;margin:10px 0;color:#664d03;font-size:12px;font-weight:700">⏳ Aguarde <span id="waitTimer">5:00</span> pra confirmar</div><button id="btnLiberar" class="btn" style="background:#6d28d9;color:#fff" disabled onclick="liberar()">⏳ AGUARDE 5 MIN</button><button class="btn" style="background:#ccc" onclick="mostrar('tela-venda')">⬅️ VOLTAR</button><p style="font-size:10px;color:#888">PIX 92981661567 - ALINER RAQUEL</p></div></div>
+
+<div id="tela-premium" class="tela"><header style="background:#22c55e;color:#000">✅ <span id="planoTxt"></span> LIBERADO VITALÍCIO</header><main>
+<div class="aviso"><h3>🔴 MODO LIVE ATIVO - Como transmitir agora:</h3><ol><li>Clique no jogo abaixo</li><li>Clique em <b>⛶ MODO LIVE</b> no topo</li><li>No TikTok Live Studio adicione essa janela</li><li>Seus seguidores já veem o jogo!</li></ol></div>
+<div class="grid"><div class="jogo" onclick="openGame('bolinha')">⚽ Bolinha</div><div class="jogo" onclick="openGame('clicker')">🍪 Clicker</div><div class="jogo" onclick="openGame('cores')">🎨 Cores</div><div class="jogo" onclick="openGame('pac')">👾 Pac-Man</div><div class="jogo" onclick="openGame('race')">🏃 Race</div><div class="jogo" onclick="openGame('roleta')">🎡 Roleta</div></div></main></div>
+
+<div id="bloq" class="bloqueio"><div class="card"><h2>⏱️ Tempo grátis acabou!</h2><button class="btn btn-prem" onclick="irPagar('PREMIUM','19.90')">PREMIUM R$ 19,90</button></div></div>
+
+<div id="gameArea"><div id="gHeader"><b id="gTitle">Jogo</b><b id="gScore">0</b><div><button onclick="toggleFull()" style="background:#facc15;color:#000;border:0;border-radius:6px;padding:6px 10px;font-weight:900;margin-right:6px">⛶ MODO LIVE</button><button onclick="closeGame()" style="background:#333;color:#fff;border:0;border-radius:6px;padding:6px 12px">✕ Fechar</button></div></div><div id="canvasWrap"><canvas id="c" width="360" height="520"></canvas><div id="extra" style="display:none"></div></div><div style="padding:8px;background:#1a144f;text-align:center;font-size:11px">🔴 Dica Live: Clique em MODO LIVE pra esconder botões e transmitir limpo no TikTok</div></div>
 
 <script>
-let planoAtual='PREMIUM';let valorAtual='19.90';
-function irPagar(plano,valor){planoAtual=plano;valorAtual=valor;document.getElementById('tit').innerText='Pagar '+plano+' com PIX';document.getElementById('val').innerText='R$ '+valor;gerarPIX(valor);mostrar('tela-pagar')}
-function liberar(){document.getElementById('planoTxt').innerText=planoAtual;mostrar('tela-premium');localStorage.setItem('pago',planoAtual)}
-function voltar(){mostrar('tela-venda')}
-function mostrar(id){document.querySelectorAll('.tela').forEach(t=>t.classList.remove('ativa'));document.getElementById(id).classList.add('ativa');window.scrollTo(0,0)}
-function crc(s){let c=0xFFFF;for(let i=0;i<s.length;i++){c^=s.charCodeAt(i)<<8;for(let j=0;j<8;j++)c=c&0x8000?(c<<1)^0x1021:c<<1}return(c&0xFFFF).toString(16).toUpperCase().padStart(4,'0')}function f(id,v){return id+String(v.length).padStart(2,'0')+v}
-function gerarPIX(valor){let chave='92981661567',nome='ALINER RAQUEL',cid='MANAUS';let pay=f('00','BR.GOV.BCB.PIX')+f('01',chave);let sem='00020101021226'+f('26',pay)+f('52','0000')+f('53','986')+f('54',parseFloat(valor).toFixed(2))+f('58','BR')+f('59',nome)+f('60',cid)+f('62',f('05','***'))+'6304';let full=sem+crc(sem);document.getElementById('code').innerText=full;document.getElementById('qrimg').src='https://api.qrserver.com/v1/create-qr-code/?size=320x320&data='+encodeURIComponent(full)}
-</script></body></html>
+let canvas=document.getElementById('c'),ctx=canvas.getContext('2d'),game=null,score=0,tempo=600,pago=localStorage.getItem('pago'),planoAtual='PREMIUM',valorAtual='19.90',waitTempo=300,waitIv=null;
+function mostrar(id){document.querySelectorAll('.tela').forEach(t=>t.classList.remove('ativa'));document.getElementById(id).classList.add('ativa')}
+function irPagar(p,v){planoAtual=p;valorAtual=v;document.getElementById('tit').innerText='Pagar '+p;document.getElementById('val').innerText='R$ '+v;gerarPIX(v);mostrar('tela-pagar');document.getElementById('bloq').classList.remove('show');waitTempo=300;let btn=document.getElementById('btnLiberar');btn.disabled=true;if(waitIv)clearInterval(waitIv);waitIv=setInterval(()=>{waitTempo--;let m=Math.floor(waitTempo/60),s=waitTempo%60;document.getElementById('waitTimer').innerText=m+':'+(s<10?'0':'')+s;btn.innerText='⏳ AGUARDE '+m+':'+(s<10?'0':'')+s;if(waitTempo<=0){clearInterval(waitIv);btn.disabled=false;btn.innerText='✅ JÁ PAGUEI, LIBERAR AGORA';btn.style.background='#22c55e';btn.style.color='#000'}},1000)}
+function liberar(){localStorage.setItem('pago',planoAtual);pago=planoAtual;document.getElementById('planoTxt').innerText=planoAtual;document.getElementById('timer').innerText='✅ '+planoAtual+' LIBERADO';document.getElementById('timer').style.background='#22c55e';mostrar('tela-premium');clearInterval(iv)}
+function openGame(t){if(!pago && tempo<=0){document.getElementById('bloq').classList.add('show');return}document.getElementById('gameArea').classList.add('show');score=0;document.getElementById('gScore').innerText=0;document.getElementById('extra').style.display='none';canvas.style.display='none';if(t=='bolinha')bolinha();else if(t=='clicker')clicker();else if(t=='cores')cores();else if(t=='pac')pac();else if(t=='race')race();else if(t=='roleta')roleta();}
+function closeGame(){document.getElementById('gameArea').classList.remove('show');if(game)cancelAnimationFrame(game);if(document.fullscreenElement)document.exitFullscreen()}
+function toggleFull(){let el=document.getElementById('gameArea');if(!document.fullscreenElement)el.requestFullscreen();else document.exitFullscreen()}
+function bolinha(){canvas.style.display='block';document.getElementById('gTitle').innerText='⚽ Bolinha';let y=100,vy=0;function loop(){ctx.clearRect(0,0,360,520);vy+=0.5;y+=vy;if(y>500){vy=-11;score++;document.getElementById('gScore').innerText=score}
