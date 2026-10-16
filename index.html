@@ -1,80 +1,21 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LivePlay - Jogos pra Live</title>
-<style>
-*{box-sizing:border-box}body{margin:0;background:#08051a;color:#fff;font-family:Arial, sans-serif}
-header{padding:15px;background:#0f0b2e;text-align:center;font-weight:900;font-size:18px;border-bottom:2px solid #5b21b6}
-main{max-width:700px;margin:auto;padding:12px}
-.plano{background:#151039;border:2px solid #333;border-radius:16px;padding:16px;margin:12px 0;text-align:center}
-.plano.plus{border-color:#22c55e} .plano.premium{border-color:#facc15;background:#1d1650}
-.preco{font-size:30px;font-weight:900;color:#a78bfa}
-.btn{width:100%;padding:14px;border:0;border-radius:10px;font-weight:900;font-size:15px;cursor:pointer;margin-top:10px}
-.btn-plus{background:#22c55e;color:#000} .btn-prem{background:#facc15;color:#000}
-#pay{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:999;padding:15px}
-#pay.aberto{display:flex}
-.card{background:#fff;color:#000;border-radius:16px;width:100%;max-width:400px;padding:20px;text-align:center}
-.pix{background:#eee;padding:12px;border-radius:8px;font-weight:900;font-size:22px;margin:10px 0;letter-spacing:1px}
-.timer{position:fixed;top:8px;right:8px;background:#facc15;color:#000;padding:6px 12px;border-radius:20px;font-weight:900;z-index:100;font-size:12px}
-.jogos{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px}
-.jogo{background:#151039;border:1px solid #3b2a8a;border-radius:12px;padding:15px;text-align:center}
-</style>
-</head>
-<body>
-<header>🎮 LivePlay - Jogos pra Live Sem Rosto</header>
-<div class="timer" id="timer">⏱️ Grátis: 10:00</div>
-<main>
-<div class="plano plus">
-<h3>🌟 PLUS</h3><div class="preco">R$ 9,90</div>
-<p style="font-size:13px">✅ Remove anúncios<br>✅ Libera 10 jogos<br>✅ Suporte no Zap</p>
-<button class="btn btn-plus" onclick="abrirPay('PLUS','9,90')">ASSINAR PLUS</button>
-</div>
-<div class="plano premium">
-<h3>👑 PREMIUM - MAIS VENDIDO</h3><div class="preco">R$ 19,90</div>
-<p style="font-size:13px">✅ Tudo do PLUS<br>✅ 30+ jogos sem rosto<br>✅ Pac-Man, TikTok Race<br>✅ Live 24h sem rosto</p>
-<button class="btn btn-prem" onclick="abrirPay('PREMIUM','19,90')">ASSINAR PREMIUM</button>
-</div>
-<div style="background:#1a144f;border-radius:12px;padding:12px;text-align:center;font-size:12px;margin:12px 0">
-🔴 Como usar na live sem rosto: PC > TikTok Live Studio > Adicionar Fonte > Captura de Janela > Escolhe o jogo
-</div>
-<h3>🕹️ Teste grátis por 10 min</h3>
-<div class="jogos"><div class="jogo">⚽<br>Bolinha</div><div class="jogo">🍪<br>Clicker</div><div class="jogo">🎨<br>Cores</div><div class="jogo">👾<br>Pac-Man</div></div>
-</main>
 
-<div id="pay" onclick="fecharPay()"><div class="card" onclick="event.stopPropagation()">
-<h2 id="pTitulo" style="margin:5px 0"></h2>
-<p>Valor: <b id="pValor" style="color:#6d28d9;font-size:22px"></b></p>
-<p style="font-size:13px;margin:10px 0 5px">PIX Celular - COPIE:</p>
-<div class="pix">92981661567</div>
-<button class="btn btn-plus" onclick="copiar()">📋 COPIAR CHAVE PIX</button>
-<a id="zap" href="https://wa.me/5592981661567" target="_blank" style="display:block;background:#25D366;color:#fff;padding:12px;border-radius:10px;text-decoration:none;font-weight:900;margin-top:10px">💬 ENVIAR COMPROVANTE NO ZAP</a>
-<button onclick="fecharPay()" style="background:none;border:0;color:#888;margin-top:10px">Fechar</button>
-</div></div>
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LivePlay - Tudo em 1</title><style>*{box-sizing:border-box}body{margin:0;background:#08051a;color:#fff;font-family:Arial}header{padding:15px;background:#0f0b2e;text-align:center;font-weight:900;border-bottom:2px solid #5b21b6}main{max-width:700px;margin:auto;padding:12px}.plano{background:#151039;border:2px solid #333;border-radius:16px;padding:16px;margin:12px 0;text-align:center}.plus{border-color:#22c55e}.premium{border-color:#facc15;background:#1d1650}.preco{font-size:30px;font-weight:900;color:#a78bfa}.btn{width:100%;padding:14px;border:0;border-radius:10px;font-weight:900;font-size:15px;cursor:pointer;margin-top:10px}.btn-plus{background:#22c55e}.btn-prem{background:#facc15}.tela{display:none}.tela.ativa{display:block}.card-pagar{background:#fff;color:#000;border-radius:18px;max-width:420px;width:100%;padding:20px;text-align:center;margin:20px auto}.qr{background:#f5f5f5;padding:10px;border-radius:12px;margin:12px 0}.pixcode{font-size:10px;word-break:break-all;background:#eee;padding:8px;border-radius:6px;text-align:left;margin:10px 0}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.jogo{background:#151039;border:2px solid #5b21b6;border-radius:14px;padding:30px;text-align:center;font-size:18px}</style></head><body><header>🎮 LivePlay</header>
+
+<!-- TELA 1: VENDAS -->
+<div id="tela-venda" class="tela ativa"><main><div class="plano plus"><h3>🌟 PLUS</h3><div class="preco">R$ 9,90</div><button class="btn btn-plus" onclick="irPagar('PLUS','9.90')">ASSINAR PLUS</button></div><div class="plano premium"><h3>👑 PREMIUM</h3><div class="preco">R$ 19,90</div><button class="btn btn-prem" onclick="irPagar('PREMIUM','19.90')">ASSINAR PREMIUM</button></div></main></div>
+
+<!-- TELA 2: PAGAMENTO COM QR CODE -->
+<div id="tela-pagar" class="tela"><div class="card-pagar"><h2 id="tit">PIX</h2><p>Valor <b id="val" style="font-size:24px;color:#6d28d9"></b></p><div class="qr"><img id="qrimg" width="260"></div><div class="pixcode" id="code"></div><button class="btn btn-plus" onclick="navigator.clipboard.writeText(document.getElementById('code').innerText);alert('PIX COPIADO!')">📋 COPIAR PIX</button><button class="btn" style="background:#6d28d9;color:#fff" onclick="liberar()">✅ JÁ PAGUEI, LIBERAR JOGOS</button><button class="btn" style="background:#ccc" onclick="voltar()">⬅️ VOLTAR</button><p style="font-size:11px;color:#888">PIX 92981661567 - Aliner Raquel</p></div></div>
+
+<!-- TELA 3: TODOS OS JOGOS GRÁTIS -->
+<div id="tela-premium" class="tela"><header style="background:#22c55e;color:#000">✅ <span id="planoTxt"></span> LIBERADO</header><main><h2>🎮 Todos os jogos liberados pra sua live!</h2><div class="grid"><div class="jogo">⚽<br>Bolinha</div><div class="jogo">🍪<br>Clicker</div><div class="jogo">🎨<br>Cores</div><div class="jogo">👾<br>Pac-Man</div><div class="jogo">🏃<br>TikTok Race</div><div class="jogo">🎡<br>Roleta</div></div><p style="background:#1a144f;padding:12px;border-radius:10px;margin-top:15px">🔴 TikTok Live Studio > Adicionar Fonte > Captura de Janela</p><button class="btn" style="background:#333;color:#fff" onclick="voltar()">⬅️ Sair</button></main></div>
 
 <script>
-var tempo=600;
-var tEl=document.getElementById('timer');
-function abrirPay(plano,valor){
- document.getElementById('pTitulo').innerText='Pagar '+plano+' com PIX';
- document.getElementById('pValor').innerText='R$ '+valor;
- document.getElementById('zap').href='https://wa.me/5592981661567?text=Olá,%20paguei%20o%20'+plano+'%20R$%20'+valor+'%20segue%20comprovante';
- document.getElementById('pay').classList.add('aberto');
-}
-function fecharPay(){document.getElementById('pay').classList.remove('aberto');}
-function copiar(){
- navigator.clipboard.writeText('92981661567');
- alert('PIX 92981661567 COPIADO! Abre seu banco e cola.');
-}
-setInterval(function(){
- if(tempo>0){
-  tempo--;
-  var m=Math.floor(tempo/60); var s=tempo%60;
-  tEl.innerText='⏱️ Grátis: '+m+':'+(s<10?'0':'')+s;
-  if(tempo==0){tEl.innerText='🔒 Teste encerrado'; tEl.style.background='#ff4444';}
- }
-},1000);
-</script>
-</body>
-  </html>
+let planoAtual='PREMIUM';let valorAtual='19.90';
+function irPagar(plano,valor){planoAtual=plano;valorAtual=valor;document.getElementById('tit').innerText='Pagar '+plano+' com PIX';document.getElementById('val').innerText='R$ '+valor;gerarPIX(valor);mostrar('tela-pagar')}
+function liberar(){document.getElementById('planoTxt').innerText=planoAtual;mostrar('tela-premium');localStorage.setItem('pago',planoAtual)}
+function voltar(){mostrar('tela-venda')}
+function mostrar(id){document.querySelectorAll('.tela').forEach(t=>t.classList.remove('ativa'));document.getElementById(id).classList.add('ativa');window.scrollTo(0,0)}
+function crc(s){let c=0xFFFF;for(let i=0;i<s.length;i++){c^=s.charCodeAt(i)<<8;for(let j=0;j<8;j++)c=c&0x8000?(c<<1)^0x1021:c<<1}return(c&0xFFFF).toString(16).toUpperCase().padStart(4,'0')}function f(id,v){return id+String(v.length).padStart(2,'0')+v}
+function gerarPIX(valor){let chave='92981661567',nome='ALINER RAQUEL',cid='MANAUS';let pay=f('00','BR.GOV.BCB.PIX')+f('01',chave);let sem='00020101021226'+f('26',pay)+f('52','0000')+f('53','986')+f('54',parseFloat(valor).toFixed(2))+f('58','BR')+f('59',nome)+f('60',cid)+f('62',f('05','***'))+'6304';let full=sem+crc(sem);document.getElementById('code').innerText=full;document.getElementById('qrimg').src='https://api.qrserver.com/v1/create-qr-code/?size=320x320&data='+encodeURIComponent(full)}
+</script></body></html>
