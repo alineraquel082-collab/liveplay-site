@@ -67,4 +67,17 @@ main{max-width:1100px;margin:auto;padding:15px}
 </div></div>
 
 <!-- MODAL TESTE ACABOU -->
-<div id="trialModal"><div class="ca
+<div id="trialModal"><div class="ca <!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>LivePlay Premium - Jogos</title>
+<style>body{margin:0;background:#08051a;color:#fff;font-family:Arial}header{padding:12px;background:#0f0b2e;text-align:center;font-weight:900}main{max-width:1100px;margin:auto;padding:15px}.jogos{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}.jogo{background:#151039;border:2px solid #5b21b6;border-radius:14px;padding:20px;text-align:center;cursor:pointer;font-size:18px}.jogo span{font-size:36px;display:block}</style></head><body>
+<header>✅ ACESSO LIBERADO - <span id="planoTxt"></span> - LivePlay Premium</header>
+<main><h2>🎮 Plataforma de Jogos pra Live Sem Rosto - Clique pra usar</h2>
+<p>Deixe rodando no TikTok Live Studio > Captura de Janela</p>
+<div class="jogos">
+<div class="jogo" onclick="alert('Bolinha rodando na live!')"><span>⚽</span>Bolinha Infinita</div>
+<div class="jogo" onclick="alert('Clicker rodando!')"><span>🍪</span>Clicker Zen</div>
+<div class="jogo" onclick="alert('Cores na live!')"><span>🎨</span>Desafio Cores</div>
+<div class="jogo" onclick="alert('Pac-Man na sua live 24h!')"><span>👾</span>Pac-Man Live</div>
+<div class="jogo" onclick="alert('TikTok Race rodando!')"><span>🏃</span>TikTok Race</div>
+<div class="jogo" onclick="alert('Roleta infinita!')"><span>🎡</span>Roleta</div>
+</div></main>
+<script>document.getElementById('planoTxt').innerText=new URLSearchParams(location.search).get('plano')||localStorage.getItem('liveplay_pago')||'PREMIUM';if(!localStorage.getItem('liveplay_pago')){localStorage.setItem('liveplay_pago','PREMIUM')}</script></body></html>
