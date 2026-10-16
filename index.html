@@ -3,81 +3,78 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>LivePlay - Jogos pra Live sem Rosto</title>
+<title>LivePlay - Jogos pra Live</title>
 <style>
-*{box-sizing:border-box}body{margin:0;background:#08051a;color:#fff;font-family:Arial,sans-serif}
-header{padding:15px;background:#0f0b2e;text-align:center;font-weight:900;font-size:20px;border-bottom:2px solid #5b21b6}
-main{max-width:1100px;margin:auto;padding:15px}
-.planos{display:flex;gap:12px;justify-content:center;margin:20px 0;flex-wrap:wrap}
-.plano{background:#151039;border:2px solid #333;border-radius:16px;padding:18px;width:300px;text-align:center}
-.plano.plus{border-color:#22c55e} .plano.premium{border-color:#facc15;background:#1d1650;transform:scale(1.05)}
-.preco{font-size:32px;font-weight:900;color:#a78bfa;margin:10px 0}
-.plano ul{list-style:none;padding:0;text-align:left;font-size:14px;margin:10px 0}
-.plano ul li{margin:5px 0}
-.btn{width:100%;padding:14px;border:0;border-radius:10px;font-weight:900;cursor:pointer;font-size:15px}
+*{box-sizing:border-box}body{margin:0;background:#08051a;color:#fff;font-family:Arial, sans-serif}
+header{padding:15px;background:#0f0b2e;text-align:center;font-weight:900;font-size:18px;border-bottom:2px solid #5b21b6}
+main{max-width:700px;margin:auto;padding:12px}
+.plano{background:#151039;border:2px solid #333;border-radius:16px;padding:16px;margin:12px 0;text-align:center}
+.plano.plus{border-color:#22c55e} .plano.premium{border-color:#facc15;background:#1d1650}
+.preco{font-size:30px;font-weight:900;color:#a78bfa}
+.btn{width:100%;padding:14px;border:0;border-radius:10px;font-weight:900;font-size:15px;cursor:pointer;margin-top:10px}
 .btn-plus{background:#22c55e;color:#000} .btn-prem{background:#facc15;color:#000}
-.btn-pix{background:#22c55e;color:#000;margin-top:12px}
-.jogos{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:15px}
-.jogo{background:#151039;border:1px solid #3b2a8a;border-radius:14px;padding:15px;text-align:center;cursor:pointer}
-.jogo.bloq{opacity:.4;filter:grayscale(1)} .jogo span{font-size:32px;display:block}
-#payModal,#trialModal{position:fixed;inset:0;background:rgba(0,0,0,.88);display:none;align-items:center;justify-content:center;z-index:99;padding:15px}
-#payModal.aberto,#trialModal.aberto{display:flex}
-.caixaPay{background:#fff;color:#000;border-radius:16px;width:100%;max-width:430px;padding:20px;text-align:center}
-.pix-key{background:#eee;padding:12px;border-radius:8px;font-weight:900;font-size:22px;margin:12px 0;letter-spacing:1px}
-.timer{position:fixed;top:70px;right:10px;background:#facc15;color:#000;padding:8px 14px;border-radius:20px;font-weight:900;z-index:10;font-size:13px}
+#pay{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;align-items:center;justify-content:center;z-index:999;padding:15px}
+#pay.aberto{display:flex}
+.card{background:#fff;color:#000;border-radius:16px;width:100%;max-width:400px;padding:20px;text-align:center}
+.pix{background:#eee;padding:12px;border-radius:8px;font-weight:900;font-size:22px;margin:10px 0;letter-spacing:1px}
+.timer{position:fixed;top:8px;right:8px;background:#facc15;color:#000;padding:6px 12px;border-radius:20px;font-weight:900;z-index:100;font-size:12px}
+.jogos{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px}
+.jogo{background:#151039;border:1px solid #3b2a8a;border-radius:12px;padding:15px;text-align:center}
 </style>
 </head>
 <body>
 <header>🎮 LivePlay - Jogos pra Live Sem Rosto</header>
 <div class="timer" id="timer">⏱️ Grátis: 10:00</div>
-
 <main>
-<div class="planos">
 <div class="plano plus">
 <h3>🌟 PLUS</h3><div class="preco">R$ 9,90</div>
-<ul><li>✅ Remove anúncios</li><li>✅ Libera 10 jogos</li><li>✅ Suporte no Zap</li></ul>
+<p style="font-size:13px">✅ Remove anúncios<br>✅ Libera 10 jogos<br>✅ Suporte no Zap</p>
 <button class="btn btn-plus" onclick="abrirPay('PLUS','9,90')">ASSINAR PLUS</button>
 </div>
 <div class="plano premium">
 <h3>👑 PREMIUM - MAIS VENDIDO</h3><div class="preco">R$ 19,90</div>
-<ul><li>✅ Tudo do PLUS</li><li>✅ 30+ jogos sem rosto</li><li>✅ Pac-Man, TikTok Race</li><li>✅ Live 24h sem rosto</li></ul>
+<p style="font-size:13px">✅ Tudo do PLUS<br>✅ 30+ jogos sem rosto<br>✅ Pac-Man, TikTok Race<br>✅ Live 24h sem rosto</p>
 <button class="btn btn-prem" onclick="abrirPay('PREMIUM','19,90')">ASSINAR PREMIUM</button>
 </div>
+<div style="background:#1a144f;border-radius:12px;padding:12px;text-align:center;font-size:12px;margin:12px 0">
+🔴 Como usar na live sem rosto: PC > TikTok Live Studio > Adicionar Fonte > Captura de Janela > Escolhe o jogo
 </div>
-
-<div style="background:#1a144f;border-radius:12px;padding:12px;text-align:center;margin:15px 0">
-<h3 style="margin:5px 0">🔴 Como usar na live sem rosto:</h3>
-<p style="font-size:12px;margin:0">PC > TikTok Live Studio > Adicionar Fonte > Captura de Janela > Escolhe o jogo > Fica ao vivo 24h!</p>
-</div>
-
-<h2>🕹️ Teste grátis por 10 min</h2>
-<div class="jogos" id="grid"></div>
+<h3>🕹️ Teste grátis por 10 min</h3>
+<div class="jogos"><div class="jogo">⚽<br>Bolinha</div><div class="jogo">🍪<br>Clicker</div><div class="jogo">🎨<br>Cores</div><div class="jogo">👾<br>Pac-Man</div></div>
 </main>
 
-<!-- MODAL PAGAMENTO PIX -->
-<div id="payModal" onclick="fecharPay()"><div class="caixaPay" onclick="event.stopPropagation()">
-<h2 id="payTitulo"></h2>
-<p>Valor: <b id="payValor" style="font-size:22px;color:#6d28d9"></b></p>
-<p style="font-size:13px">Chave PIX Celular - COPIE:</p>
-<div class="pix-key">92981661567</div>
-<button class="btn btn-pix" onclick="copiarPix()">📋 COPIAR CHAVE PIX</button>
-<a href="https://wa.me/5592981661567?text=Olá,%20paguei%20o%20LivePlay%20-%20Segue%20comprovante" target="_blank" style="display:block;margin-top:12px;background:#25D366;color:#fff;padding:12px;border-radius:10px;text-decoration:none;font-weight:900">💬 ENVIAR COMPROVANTE NO ZAP</a>
-<p style="font-size:11px;color:#888;margin-top:8px">Após copiar, faça o PIX no seu banco</p>
-<button style="background:none;border:0;color:#888;margin-top:8px;cursor:pointer" onclick="fecharPay()">Fechar</button>
+<div id="pay" onclick="fecharPay()"><div class="card" onclick="event.stopPropagation()">
+<h2 id="pTitulo" style="margin:5px 0"></h2>
+<p>Valor: <b id="pValor" style="color:#6d28d9;font-size:22px"></b></p>
+<p style="font-size:13px;margin:10px 0 5px">PIX Celular - COPIE:</p>
+<div class="pix">92981661567</div>
+<button class="btn btn-plus" onclick="copiar()">📋 COPIAR CHAVE PIX</button>
+<a id="zap" href="https://wa.me/5592981661567" target="_blank" style="display:block;background:#25D366;color:#fff;padding:12px;border-radius:10px;text-decoration:none;font-weight:900;margin-top:10px">💬 ENVIAR COMPROVANTE NO ZAP</a>
+<button onclick="fecharPay()" style="background:none;border:0;color:#888;margin-top:10px">Fechar</button>
 </div></div>
 
-<!-- MODAL TESTE ACABOU -->
-<div id="trialModal"><div class="ca <!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>LivePlay Premium - Jogos</title>
-<style>body{margin:0;background:#08051a;color:#fff;font-family:Arial}header{padding:12px;background:#0f0b2e;text-align:center;font-weight:900}main{max-width:1100px;margin:auto;padding:15px}.jogos{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}.jogo{background:#151039;border:2px solid #5b21b6;border-radius:14px;padding:20px;text-align:center;cursor:pointer;font-size:18px}.jogo span{font-size:36px;display:block}</style></head><body>
-<header>✅ ACESSO LIBERADO - <span id="planoTxt"></span> - LivePlay Premium</header>
-<main><h2>🎮 Plataforma de Jogos pra Live Sem Rosto - Clique pra usar</h2>
-<p>Deixe rodando no TikTok Live Studio > Captura de Janela</p>
-<div class="jogos">
-<div class="jogo" onclick="alert('Bolinha rodando na live!')"><span>⚽</span>Bolinha Infinita</div>
-<div class="jogo" onclick="alert('Clicker rodando!')"><span>🍪</span>Clicker Zen</div>
-<div class="jogo" onclick="alert('Cores na live!')"><span>🎨</span>Desafio Cores</div>
-<div class="jogo" onclick="alert('Pac-Man na sua live 24h!')"><span>👾</span>Pac-Man Live</div>
-<div class="jogo" onclick="alert('TikTok Race rodando!')"><span>🏃</span>TikTok Race</div>
-<div class="jogo" onclick="alert('Roleta infinita!')"><span>🎡</span>Roleta</div>
-</div></main>
-<script>document.getElementById('planoTxt').innerText=new URLSearchParams(location.search).get('plano')||localStorage.getItem('liveplay_pago')||'PREMIUM';if(!localStorage.getItem('liveplay_pago')){localStorage.setItem('liveplay_pago','PREMIUM')}</script></body></html>
+<script>
+var tempo=600;
+var tEl=document.getElementById('timer');
+function abrirPay(plano,valor){
+ document.getElementById('pTitulo').innerText='Pagar '+plano+' com PIX';
+ document.getElementById('pValor').innerText='R$ '+valor;
+ document.getElementById('zap').href='https://wa.me/5592981661567?text=Olá,%20paguei%20o%20'+plano+'%20R$%20'+valor+'%20segue%20comprovante';
+ document.getElementById('pay').classList.add('aberto');
+}
+function fecharPay(){document.getElementById('pay').classList.remove('aberto');}
+function copiar(){
+ navigator.clipboard.writeText('92981661567');
+ alert('PIX 92981661567 COPIADO! Abre seu banco e cola.');
+}
+setInterval(function(){
+ if(tempo>0){
+  tempo--;
+  var m=Math.floor(tempo/60); var s=tempo%60;
+  tEl.innerText='⏱️ Grátis: '+m+':'+(s<10?'0':'')+s;
+  if(tempo==0){tEl.innerText='🔒 Teste encerrado'; tEl.style.background='#ff4444';}
+ }
+},1000);
+</script>
+</body>
+  </html>
